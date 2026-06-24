@@ -32,8 +32,8 @@ const sb = {
 };
 
 // ─── CATEGORIES ────────────────────────────────────────────────────────────────
-const CATEGORIES = ["Food", "Transport", "Entertainment", "Shopping", "Bills", "Health", "Other"];
-const CAT_ICONS = { Food:"🍕", Transport:"🚌", Entertainment:"🎮", Shopping:"🛍️", Bills:"📄", Health:"💊", Other:"📦" };
+const CATEGORIES = ["Food", "Transport", "Entertainment", "Shopping", "Bills", "Health", "Pets", "Other"];
+const CAT_ICONS = { Food:"🍕", Transport:"🚌", Entertainment:"🎮", Shopping:"🛍️", Bills:"📄", Health:"💊", Pets:"🐾", Other:"📦" };
 
 // ─── THEMES ────────────────────────────────────────────────────────────────────
 const THEMES = {
@@ -66,7 +66,7 @@ const THEMES = {
       rare:    {border:"#cc0000",glow:"#cc000050",label:"Rare",    color:"#f87171",shine:"#fca5a5"},
       epic:    {border:"#f5c842",glow:"#f5c84260",label:"Epic",    color:"#fde68a",shine:"#fef3c7"},
     },
-    catColors:{Food:"#e63030",Transport:"#2952c4",Entertainment:"#c026d3",Shopping:"#e8870a",Bills:"#dc2626",Health:"#16a34a",Other:"#6b7280"},
+    catColors:{Food:"#e63030",Transport:"#2952c4",Entertainment:"#c026d3",Shopping:"#e8870a",Bills:"#dc2626",Health:"#16a34a",Pets:"#f97316",Other:"#6b7280"},
     levels:[
       {level:1,title:"Friendly Neighbor", minXP:0,   color:"#9ca3af",bg:"#1a1017",char:"🕷️"},
       {level:2,title:"Web Slinger",       minXP:500, color:"#2952c4",bg:"#0d1a3a",char:"🕸️"},
@@ -110,7 +110,7 @@ const THEMES = {
       rare:    {border:"#e91e8c",glow:"#e91e8c50",label:"Rare",    color:"#e91e8c",shine:"#f48fb1"},
       epic:    {border:"#c2185b",glow:"#c2185b60",label:"Epic",    color:"#c2185b",shine:"#f06292"},
     },
-    catColors:{Food:"#ff69b4",Transport:"#e91e8c",Entertainment:"#c2185b",Shopping:"#ff1493",Bills:"#f06292",Health:"#f48fb1",Other:"#d4829a"},
+    catColors:{Food:"#ff69b4",Transport:"#e91e8c",Entertainment:"#c2185b",Shopping:"#ff1493",Bills:"#f06292",Health:"#f48fb1",Pets:"#ff9800",Other:"#d4829a"},
     levels:[
       {level:1,title:"Curious Kitty",  minXP:0,   color:"#d4829a",bg:"#fff0f5",char:"🐱"},
       {level:2,title:"Sweet Saver",    minXP:500, color:"#ff69b4",bg:"#ffe4ef",char:"🎀"},
@@ -129,11 +129,21 @@ const THEMES = {
 
 // ─── QUESTS & BADGES ───────────────────────────────────────────────────────────
 const QUESTS = [
-  {id:"log5",   title:"First Steps",       desc:"Log 5 purchases",           xp:75,  check:(e)=>e.length>=5},
-  {id:"log10",  title:"Getting Consistent",desc:"Log 10 purchases",          xp:100, check:(e)=>e.length>=10},
-  {id:"allCats",title:"Category Master",   desc:"Use all 7 categories",      xp:150, check:(e)=>new Set(e.map(x=>x.category)).size>=7},
-  {id:"sameDay",title:"Speed Logger",      desc:"Log 3 purchases on one day",xp:100, check:(e)=>{const d={};e.forEach(x=>{d[x.date]=(d[x.date]||0)+1;});return Object.values(d).some(v=>v>=3);}},
-  {id:"week",   title:"Week Warrior",      desc:"Log on 7 different days",   xp:200, check:(e)=>new Set(e.map(x=>x.date)).size>=7},
+  {id:"log5",      title:"First Steps",         desc:"Log 5 purchases",                      xp:75,  check:(e)=>e.length>=5},
+  {id:"log10",     title:"Getting Consistent",   desc:"Log 10 purchases",                     xp:100, check:(e)=>e.length>=10},
+  {id:"log20",     title:"On A Roll",            desc:"Log 20 purchases",                     xp:125, check:(e)=>e.length>=20},
+  {id:"allCats",   title:"Category Master",      desc:"Use all 8 categories",                 xp:150, check:(e)=>new Set(e.map(x=>x.category)).size>=8},
+  {id:"sameDay",   title:"Speed Logger",         desc:"Log 3 purchases on one day",           xp:100, check:(e)=>{const d={};e.forEach(x=>{d[x.date]=(d[x.date]||0)+1;});return Object.values(d).some(v=>v>=3);}},
+  {id:"week",      title:"Week Warrior",         desc:"Log on 7 different days",              xp:200, check:(e)=>new Set(e.map(x=>x.date)).size>=7},
+  {id:"bigmonth",  title:"Big Spender Month",    desc:"Log 20+ purchases in one month",       xp:175, check:(e)=>{const m={};e.forEach(x=>{const k=x.date.slice(0,7);m[k]=(m[k]||0)+1;});return Object.values(m).some(v=>v>=20);}},
+  {id:"under10",   title:"Budget Ninja",         desc:"Log 10 purchases under $10 each",      xp:125, check:(e)=>e.filter(x=>x.amount<10).length>=10},
+  {id:"over50",    title:"Treat Yourself",       desc:"Log 3 purchases over $50",             xp:100, check:(e)=>e.filter(x=>x.amount>50).length>=3},
+  {id:"petlover",  title:"Fur Baby Finance",     desc:"Log 5 Pets purchases",                 xp:100, check:(e)=>e.filter(x=>x.category==="Pets").length>=5},
+  {id:"noNotes",   title:"Detail Oriented",      desc:"Add a note to 10 purchases",           xp:125, check:(e)=>e.filter(x=>x.note&&x.note.trim().length>0).length>=10},
+  {id:"healthy",   title:"Healthy Habits",       desc:"Log 5 Health purchases",               xp:100, check:(e)=>e.filter(x=>x.category==="Health").length>=5},
+  {id:"log50",     title:"Half Century",         desc:"Log 50 total purchases",               xp:250, check:(e)=>e.length>=50},
+  {id:"multicat",  title:"Diversified",          desc:"Log in 5 different categories",        xp:125, check:(e)=>new Set(e.map(x=>x.category)).size>=5},
+  {id:"30days",    title:"Monthly Master",       desc:"Log purchases on 30 different days",   xp:300, check:(e)=>new Set(e.map(x=>x.date)).size>=30},
 ];
 
 const BADGES = [
@@ -266,6 +276,8 @@ export default function BudgetQuest() {
   const [saveStatus, setSaveStatus] = useState("idle");
   const [saveError, setSaveError] = useState("");
   const [loading, setLoading]     = useState(false);
+  const [selectedCat, setSelectedCat] = useState(null);
+  const [deleteConfirm, setDeleteConfirm] = useState(null);
 
   // Load data when profile selected — always wipe state first so previous profile never bleeds through
   useEffect(() => {
@@ -297,6 +309,13 @@ export default function BudgetQuest() {
       setTimeout(()=>{ setSaveStatus("idle"); setSaveError(""); }, 6000);
     }
   }, [profile]);
+
+  const deleteEntry = (id) => {
+    const newEntries = entries.filter(e => e.id !== id);
+    setEntries(newEntries);
+    setDeleteConfirm(null);
+    saveData(newEntries, xp, completedQuests, unlockedBadges);
+  };
 
   if (!profile) return <ProfilePicker onSelect={p=>{setProfile(p);setTab("log");}}/>;
 
@@ -419,9 +438,9 @@ export default function BudgetQuest() {
       {tab==="log"&&(
         <div style={card}>
           <div style={{fontFamily:"'Fredoka One',cursive",fontSize:20,color:t.headingColor,marginBottom:16}}>{t.logTabIcon} Add a purchase</div>
-          <div style={{display:"flex",gap:10,marginBottom:14}}>
-            <div style={{flex:1}}><label style={lbl}>Amount ($)</label><input type="number" placeholder="0.00" value={form.amount} onChange={e=>setForm(f=>({...f,amount:e.target.value}))} style={inp}/></div>
-            <div style={{flex:1}}><label style={lbl}>Date</label><input type="date" value={form.date} onChange={e=>setForm(f=>({...f,date:e.target.value}))} style={inp}/></div>
+          <div style={{display:"flex",gap:10,marginBottom:14,minWidth:0}}>
+            <div style={{flex:"0 0 42%",minWidth:0}}><label style={lbl}>Amount ($)</label><input type="number" placeholder="0.00" value={form.amount} onChange={e=>setForm(f=>({...f,amount:e.target.value}))} style={inp}/></div>
+            <div style={{flex:"0 0 52%",minWidth:0}}><label style={lbl}>Date</label><input type="date" value={form.date} onChange={e=>setForm(f=>({...f,date:e.target.value}))} style={{...inp,fontSize:12,paddingLeft:8,paddingRight:4,WebkitAppearance:"none",appearance:"none"}}/></div>
           </div>
           <div style={{marginBottom:14}}>
             <label style={lbl}>Category <span style={{color:t.secondary,fontStyle:"italic",textTransform:"none",letterSpacing:0}}>+5 XP</span></label>
@@ -451,13 +470,28 @@ export default function BudgetQuest() {
         <div style={card}>
           <div style={{fontFamily:"'Fredoka One',cursive",fontSize:20,color:t.headingColor,marginBottom:16}}>{entries.length} purchases logged</div>
           {entries.length===0&&<div style={{textAlign:"center",padding:"32px 0",color:t.histEmptyColor}}><div style={{fontSize:40,marginBottom:10}}>{t.emptyIcon}</div><div style={{fontWeight:700}}>{t.emptyText}</div><div style={{fontSize:13,marginTop:6}}>{t.emptySub}</div></div>}
-          {entries.slice(0,30).map(e=>(
-            <div key={e.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"12px 0",borderBottom:`1px solid ${t.histDivider}`}}>
-              <div style={{display:"flex",alignItems:"center",gap:10}}>
-                <div style={{width:36,height:36,borderRadius:10,background:`${t.catColors[e.category]}15`,border:`2px solid ${t.catColors[e.category]}50`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18}}>{CAT_ICONS[e.category]}</div>
-                <div><div style={{fontWeight:700,fontSize:14}}>{e.note||e.category}</div><div style={{fontSize:12,color:t.histCatText}}>{e.category} · {e.date}</div></div>
+          {entries.slice(0,100).map(e=>(
+            <div key={e.id} style={{padding:"12px 0",borderBottom:`1px solid ${t.histDivider}`}}>
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                <div style={{display:"flex",alignItems:"center",gap:10,flex:1}}>
+                  <div style={{width:36,height:36,borderRadius:10,background:`${t.catColors[e.category]||"#888"}15`,border:`2px solid ${t.catColors[e.category]||"#888"}50`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>{CAT_ICONS[e.category]||"📦"}</div>
+                  <div style={{flex:1,minWidth:0}}>
+                    <div style={{fontWeight:700,fontSize:14,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{e.note||e.category}</div>
+                    <div style={{fontSize:12,color:t.histCatText}}>{e.category} · {e.date}</div>
+                  </div>
+                </div>
+                <div style={{display:"flex",alignItems:"center",gap:8,flexShrink:0}}>
+                  <div style={{color:t.xpNumColor,fontWeight:900,fontFamily:"'Fredoka One',cursive",fontSize:16}}>${e.amount.toFixed(2)}</div>
+                  {deleteConfirm===e.id ? (
+                    <div style={{display:"flex",gap:4}}>
+                      <button onClick={()=>deleteEntry(e.id)} style={{background:"#ef4444",border:"none",borderRadius:8,color:"#fff",fontSize:11,fontWeight:800,padding:"4px 8px",cursor:"pointer"}}>Delete</button>
+                      <button onClick={()=>setDeleteConfirm(null)} style={{background:t.cardBorder,border:"none",borderRadius:8,color:t.bodyText,fontSize:11,fontWeight:800,padding:"4px 8px",cursor:"pointer"}}>Cancel</button>
+                    </div>
+                  ) : (
+                    <button onClick={()=>setDeleteConfirm(e.id)} style={{background:"transparent",border:`1px solid #ef444460`,borderRadius:8,color:"#ef4444",fontSize:14,padding:"4px 8px",cursor:"pointer",lineHeight:1}}>🗑️</button>
+                  )}
+                </div>
               </div>
-              <div style={{color:t.xpNumColor,fontWeight:900,fontFamily:"'Fredoka One',cursive",fontSize:16}}>${e.amount.toFixed(2)}</div>
             </div>
           ))}
         </div>
@@ -505,27 +539,58 @@ export default function BudgetQuest() {
       {/* STATS */}
       {tab==="stats"&&(
         <div>
-          <div style={{background:t.statsHeaderBg,backgroundImage:t.statsHeaderBgImg,borderRadius:20,padding:"20px",marginBottom:14,textAlign:"center",boxShadow:`0 8px 32px ${t.primary}30`}}>
-            <div style={{color:"#ffffff60",fontSize:12,fontWeight:700,textTransform:"uppercase",letterSpacing:1,marginBottom:4}}>Total Tracked</div>
-            <div style={{color:"#fff",fontFamily:"'Fredoka One',cursive",fontSize:42,lineHeight:1}}>${totalSpent.toFixed(2)}</div>
-            <div style={{color:"#ffffff90",fontSize:13,marginTop:6,fontWeight:600}}>{entries.length} purchases logged</div>
-          </div>
-          {byCategory.length===0&&<div style={{color:t.statsEmptyColor,textAlign:"center",padding:"24px 0",fontWeight:600}}>{t.statsEmptyText}</div>}
-          {byCategory.map(({cat,total,count})=>{
-            const pct=totalSpent>0?(total/totalSpent)*100:0;
-            return(
-              <div key={cat} style={{...card,padding:"14px 16px",marginBottom:10}}>
-                <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
-                  <div style={{display:"flex",alignItems:"center",gap:8}}><span style={{fontSize:22}}>{CAT_ICONS[cat]}</span><span style={{fontWeight:800,color:t.statsCatText}}>{cat}</span><span style={{fontSize:12,color:t.statsCatMuted,fontWeight:700}}>×{count}</span></div>
-                  <div style={{fontFamily:"'Fredoka One',cursive",color:t.xpNumColor,fontSize:18}}>${total.toFixed(2)}</div>
+          {selectedCat ? (
+            <div>
+              <button onClick={()=>setSelectedCat(null)} style={{background:"transparent",border:`1px solid ${t.cardBorder}`,borderRadius:99,padding:"6px 14px",color:t.subColor,fontSize:13,cursor:"pointer",fontWeight:600,fontFamily:"inherit",marginBottom:14}}>← Back to Stats</button>
+              <div style={{...card,padding:"14px 18px",marginBottom:14}}>
+                <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:4}}>
+                  <span style={{fontSize:28}}>{CAT_ICONS[selectedCat]||"📦"}</span>
+                  <div>
+                    <div style={{fontFamily:"'Fredoka One',cursive",color:t.headingColor,fontSize:20}}>{selectedCat}</div>
+                    <div style={{fontSize:12,color:t.subColor,fontWeight:600}}>{entries.filter(e=>e.category===selectedCat).length} purchases · ${entries.filter(e=>e.category===selectedCat).reduce((s,e)=>s+e.amount,0).toFixed(2)} total</div>
+                  </div>
                 </div>
-                <div style={{height:8,background:t.badgeBarBg,borderRadius:99,overflow:"hidden"}}>
-                  <div style={{height:"100%",width:`${pct}%`,background:`linear-gradient(90deg,${t.catColors[cat]}99,${t.catColors[cat]})`,borderRadius:99,boxShadow:`0 0 8px ${t.catColors[cat]}70`,transition:"width 0.5s ease"}}/>
-                </div>
-                <div style={{fontSize:11,color:t.statsCatMuted,marginTop:5,fontWeight:700}}>{pct.toFixed(0)}% of spending</div>
               </div>
-            );
-          })}
+              {entries.filter(e=>e.category===selectedCat).sort((a,b)=>b.date.localeCompare(a.date)).map(e=>(
+                <div key={e.id} style={{...card,padding:"12px 16px",marginBottom:8,borderLeft:`4px solid ${t.catColors[selectedCat]||t.primary}`}}>
+                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                    <div>
+                      <div style={{fontWeight:700,fontSize:14}}>{e.note||e.category}</div>
+                      <div style={{fontSize:12,color:t.subColor,marginTop:2}}>{e.date}</div>
+                    </div>
+                    <div style={{fontFamily:"'Fredoka One',cursive",color:t.xpNumColor,fontSize:18}}>${e.amount.toFixed(2)}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div>
+              <div style={{background:t.statsHeaderBg,backgroundImage:t.statsHeaderBgImg,borderRadius:20,padding:"20px",marginBottom:14,textAlign:"center",boxShadow:`0 8px 32px ${t.primary}30`}}>
+                <div style={{color:"#ffffff60",fontSize:12,fontWeight:700,textTransform:"uppercase",letterSpacing:1,marginBottom:4}}>Total Tracked</div>
+                <div style={{color:"#fff",fontFamily:"'Fredoka One',cursive",fontSize:42,lineHeight:1}}>${totalSpent.toFixed(2)}</div>
+                <div style={{color:"#ffffff90",fontSize:13,marginTop:6,fontWeight:600}}>{entries.length} purchases logged</div>
+              </div>
+              <div style={{color:t.subColor,fontSize:12,textAlign:"center",marginBottom:10,fontWeight:600}}>Tap a category to see its purchases</div>
+              {byCategory.length===0&&<div style={{color:t.statsEmptyColor,textAlign:"center",padding:"24px 0",fontWeight:600}}>{t.statsEmptyText}</div>}
+              {byCategory.map(({cat,total,count})=>{
+                const pct=totalSpent>0?(total/totalSpent)*100:0;
+                return(
+                  <div key={cat} onClick={()=>setSelectedCat(cat)} style={{...card,padding:"14px 16px",marginBottom:10,cursor:"pointer",transition:"transform 0.15s"}}
+                    onMouseEnter={e=>e.currentTarget.style.transform="scale(1.01)"}
+                    onMouseLeave={e=>e.currentTarget.style.transform="scale(1)"}>
+                    <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
+                      <div style={{display:"flex",alignItems:"center",gap:8}}><span style={{fontSize:22}}>{CAT_ICONS[cat]||"📦"}</span><span style={{fontWeight:800,color:t.statsCatText}}>{cat}</span><span style={{fontSize:12,color:t.statsCatMuted,fontWeight:700}}>×{count}</span></div>
+                      <div style={{display:"flex",alignItems:"center",gap:6}}><div style={{fontFamily:"'Fredoka One',cursive",color:t.xpNumColor,fontSize:18}}>${total.toFixed(2)}</div><span style={{color:t.subColor,fontSize:12}}>›</span></div>
+                    </div>
+                    <div style={{height:8,background:t.badgeBarBg,borderRadius:99,overflow:"hidden"}}>
+                      <div style={{height:"100%",width:`${pct}%`,background:`linear-gradient(90deg,${t.catColors[cat]||t.primary}99,${t.catColors[cat]||t.primary})`,borderRadius:99,boxShadow:`0 0 8px ${t.catColors[cat]||t.primary}70`,transition:"width 0.5s ease"}}/>
+                    </div>
+                    <div style={{fontSize:11,color:t.statsCatMuted,marginTop:5,fontWeight:700}}>{pct.toFixed(0)}% of spending</div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       )}
     </div>
