@@ -32,8 +32,8 @@ const sb = {
 };
 
 // ─── CATEGORIES ────────────────────────────────────────────────────────────────
-const CATEGORIES = ["Food", "Transport", "Entertainment", "Shopping", "Bills", "Health", "Pets", "Other"];
-const CAT_ICONS = { Food:"🍕", Transport:"🚌", Entertainment:"🎮", Shopping:"🛍️", Bills:"📄", Health:"💊", Pets:"🐾", Other:"📦" };
+const CATEGORIES = ["Food", "Transport", "Entertainment", "Shopping", "Bills", "Health", "Pets", "Savings", "Other"];
+const CAT_ICONS = { Food:"🍕", Transport:"🚌", Entertainment:"🎮", Shopping:"🛍️", Bills:"📄", Health:"💊", Pets:"🐾", Savings:"🏦", Other:"📦" };
 
 // ─── THEMES ────────────────────────────────────────────────────────────────────
 const THEMES = {
@@ -66,7 +66,7 @@ const THEMES = {
       rare:    {border:"#cc0000",glow:"#cc000050",label:"Rare",    color:"#f87171",shine:"#fca5a5"},
       epic:    {border:"#f5c842",glow:"#f5c84260",label:"Epic",    color:"#fde68a",shine:"#fef3c7"},
     },
-    catColors:{Food:"#e63030",Transport:"#2952c4",Entertainment:"#c026d3",Shopping:"#e8870a",Bills:"#dc2626",Health:"#16a34a",Pets:"#f97316",Other:"#6b7280"},
+    catColors:{Food:"#e63030",Transport:"#2952c4",Entertainment:"#c026d3",Shopping:"#e8870a",Bills:"#dc2626",Health:"#16a34a",Pets:"#f97316",Savings:"#10b981",Other:"#6b7280"},
     levels:[
       {level:1,title:"Friendly Neighbor", minXP:0,   color:"#9ca3af",bg:"#1a1017",char:"🕷️"},
       {level:2,title:"Web Slinger",       minXP:500, color:"#2952c4",bg:"#0d1a3a",char:"🕸️"},
@@ -110,7 +110,7 @@ const THEMES = {
       rare:    {border:"#e91e8c",glow:"#e91e8c50",label:"Rare",    color:"#e91e8c",shine:"#f48fb1"},
       epic:    {border:"#c2185b",glow:"#c2185b60",label:"Epic",    color:"#c2185b",shine:"#f06292"},
     },
-    catColors:{Food:"#ff69b4",Transport:"#e91e8c",Entertainment:"#c2185b",Shopping:"#ff1493",Bills:"#f06292",Health:"#f48fb1",Pets:"#ff9800",Other:"#d4829a"},
+    catColors:{Food:"#ff69b4",Transport:"#e91e8c",Entertainment:"#c2185b",Shopping:"#ff1493",Bills:"#f06292",Health:"#f48fb1",Pets:"#ff9800",Savings:"#34d399",Other:"#d4829a"},
     levels:[
       {level:1,title:"Curious Kitty",  minXP:0,   color:"#d4829a",bg:"#fff0f5",char:"🐱"},
       {level:2,title:"Sweet Saver",    minXP:500, color:"#ff69b4",bg:"#ffe4ef",char:"🎀"},
