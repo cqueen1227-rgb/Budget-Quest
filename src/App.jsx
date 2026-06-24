@@ -554,11 +554,21 @@ export default function BudgetQuest() {
               {entries.filter(e=>e.category===selectedCat).sort((a,b)=>b.date.localeCompare(a.date)).map(e=>(
                 <div key={e.id} style={{...card,padding:"12px 16px",marginBottom:8,borderLeft:`4px solid ${t.catColors[selectedCat]||t.primary}`}}>
                   <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                    <div>
-                      <div style={{fontWeight:700,fontSize:14}}>{e.note||e.category}</div>
+                    <div style={{flex:1,minWidth:0}}>
+                      <div style={{fontWeight:700,fontSize:14,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{e.note||e.category}</div>
                       <div style={{fontSize:12,color:t.subColor,marginTop:2}}>{e.date}</div>
                     </div>
-                    <div style={{fontFamily:"'Fredoka One',cursive",color:t.xpNumColor,fontSize:18}}>${e.amount.toFixed(2)}</div>
+                    <div style={{display:"flex",alignItems:"center",gap:8,flexShrink:0}}>
+                      <div style={{fontFamily:"'Fredoka One',cursive",color:t.xpNumColor,fontSize:18}}>${e.amount.toFixed(2)}</div>
+                      {deleteConfirm===e.id ? (
+                        <div style={{display:"flex",gap:4}}>
+                          <button onClick={()=>deleteEntry(e.id)} style={{background:"#ef4444",border:"none",borderRadius:8,color:"#fff",fontSize:11,fontWeight:800,padding:"4px 8px",cursor:"pointer"}}>Delete</button>
+                          <button onClick={()=>setDeleteConfirm(null)} style={{background:t.cardBorder,border:"none",borderRadius:8,color:t.bodyText,fontSize:11,fontWeight:800,padding:"4px 8px",cursor:"pointer"}}>Cancel</button>
+                        </div>
+                      ) : (
+                        <button onClick={()=>setDeleteConfirm(e.id)} style={{background:"transparent",border:`1px solid #ef444460`,borderRadius:8,color:"#ef4444",fontSize:14,padding:"4px 8px",cursor:"pointer",lineHeight:1}}>🗑️</button>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
