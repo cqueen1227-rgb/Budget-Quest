@@ -311,10 +311,18 @@ export default function BudgetQuest() {
   }, [profile]);
 
   const deleteEntry = (id) => {
+    const entry = entries.find(e => e.id === id);
     const newEntries = entries.filter(e => e.id !== id);
+    // Recalculate XP lost: base 10 + category 5 + same-day bonus 10 if applicable
+    let lost = 10;
+    if (entry.category) lost += 5;
+    const today = new Date().toISOString().split("T")[0];
+    if (entry.date === today) lost += 10;
+    const newXP = Math.max(0, xp - lost);
     setEntries(newEntries);
+    setXP(newXP);
     setDeleteConfirm(null);
-    saveData(newEntries, xp, completedQuests, unlockedBadges);
+    saveData(newEntries, newXP, completedQuests, unlockedBadges);
   };
 
   if (!profile) return <ProfilePicker onSelect={p=>{setProfile(p);setTab("log");}}/>;
