@@ -38,9 +38,9 @@ const CAT_ICONS = { Food:"🍕", Transport:"🚌", Entertainment:"🎮", Shoppin
 // ─── THEMES ────────────────────────────────────────────────────────────────────
 const THEMES = {
   cameron: {
-    name: "Cameron", emoji: "🕷️",
-    pageBg: "#0a0608",
-    pageBgImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 0 L40 80 M0 40 L80 40 M0 0 L80 80 M80 0 L0 80' stroke='%23cc000015' stroke-width='0.5' fill='none'/%3E%3Ccircle cx='40' cy='40' r='30' stroke='%23cc000010' stroke-width='0.5' fill='none'/%3E%3Ccircle cx='40' cy='40' r='15' stroke='%23cc000010' stroke-width='0.5' fill='none'/%3E%3C/svg%3E")`,
+    name:"Cameron", emoji:"🕷️",
+    pageBg:"#0a0608",
+    pageBgImage:`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 0 L40 80 M0 40 L80 40 M0 0 L80 80 M80 0 L0 80' stroke='%23cc000015' stroke-width='0.5' fill='none'/%3E%3Ccircle cx='40' cy='40' r='30' stroke='%23cc000010' stroke-width='0.5' fill='none'/%3E%3Ccircle cx='40' cy='40' r='15' stroke='%23cc000010' stroke-width='0.5' fill='none'/%3E%3C/svg%3E")`,
     cardBg:"linear-gradient(145deg,#1a0d0d,#0d1525)", cardBorder:"#cc000030",
     tabBarBg:"#0d0608", tabBarBorder:"#cc000025",
     tabActive:"linear-gradient(135deg,#cc0000,#1a3a8f)", tabActiveColor:"#fff", tabInactiveColor:"#6b4040", tabShadow:"0 2px 14px #cc000050",
@@ -82,7 +82,7 @@ const THEMES = {
     statsEmptyText:"Log some purchases to see your web of spending!",
   },
   hannah: {
-    name: "Hannah", emoji: "🎀",
+    name:"Hannah", emoji:"🎀",
     pageBg:"#fff0f5",
     pageBgImage:`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='10' cy='10' r='2' fill='%23ffb6c120'/%3E%3Ccircle cx='30' cy='30' r='3' fill='%23ff69b420'/%3E%3Ccircle cx='50' cy='10' r='2' fill='%23ffb6c120'/%3E%3Ccircle cx='10' cy='50' r='2' fill='%23ff69b415'/%3E%3Ccircle cx='50' cy='50' r='2' fill='%23ffb6c120'/%3E%3C/svg%3E")`,
     cardBg:"linear-gradient(145deg,#fff5f9,#ffeef5)", cardBorder:"#ffb6c160",
@@ -127,49 +127,69 @@ const THEMES = {
   },
 };
 
-// ─── QUESTS & BADGES ───────────────────────────────────────────────────────────
+// ─── QUESTS ────────────────────────────────────────────────────────────────────
 const QUESTS = [
-  {id:"log5",      title:"First Steps",         desc:"Log 5 purchases",                      xp:75,  check:(e)=>e.length>=5},
-  {id:"log10",     title:"Getting Consistent",   desc:"Log 10 purchases",                     xp:100, check:(e)=>e.length>=10},
-  {id:"log20",     title:"On A Roll",            desc:"Log 20 purchases",                     xp:125, check:(e)=>e.length>=20},
-  {id:"allCats",   title:"Category Master",      desc:"Use all 8 categories",                 xp:150, check:(e)=>new Set(e.map(x=>x.category)).size>=8},
-  {id:"sameDay",   title:"Speed Logger",         desc:"Log 3 purchases on one day",           xp:100, check:(e)=>{const d={};e.forEach(x=>{d[x.date]=(d[x.date]||0)+1;});return Object.values(d).some(v=>v>=3);}},
-  {id:"week",      title:"Week Warrior",         desc:"Log on 7 different days",              xp:200, check:(e)=>new Set(e.map(x=>x.date)).size>=7},
-  {id:"bigmonth",  title:"Big Spender Month",    desc:"Log 20+ purchases in one month",       xp:175, check:(e)=>{const m={};e.forEach(x=>{const k=x.date.slice(0,7);m[k]=(m[k]||0)+1;});return Object.values(m).some(v=>v>=20);}},
-  {id:"under10",   title:"Budget Ninja",         desc:"Log 10 purchases under $10 each",      xp:125, check:(e)=>e.filter(x=>x.amount<10).length>=10},
-  {id:"over50",    title:"Treat Yourself",       desc:"Log 3 purchases over $50",             xp:100, check:(e)=>e.filter(x=>x.amount>50).length>=3},
-  {id:"petlover",  title:"Fur Baby Finance",     desc:"Log 5 Pets purchases",                 xp:100, check:(e)=>e.filter(x=>x.category==="Pets").length>=5},
-  {id:"noNotes",   title:"Detail Oriented",      desc:"Add a note to 10 purchases",           xp:125, check:(e)=>e.filter(x=>x.note&&x.note.trim().length>0).length>=10},
-  {id:"healthy",   title:"Healthy Habits",       desc:"Log 5 Health purchases",               xp:100, check:(e)=>e.filter(x=>x.category==="Health").length>=5},
-  {id:"log50",     title:"Half Century",         desc:"Log 50 total purchases",               xp:250, check:(e)=>e.length>=50},
-  {id:"multicat",  title:"Diversified",          desc:"Log in 5 different categories",        xp:125, check:(e)=>new Set(e.map(x=>x.category)).size>=5},
-  {id:"30days",    title:"Monthly Master",       desc:"Log purchases on 30 different days",   xp:300, check:(e)=>new Set(e.map(x=>x.date)).size>=30},
+  {id:"log5",       title:"First Steps",        desc:"Log 5 purchases",                    xp:75,  check:(e)=>e.length>=5},
+  {id:"log10",      title:"Getting Consistent",  desc:"Log 10 purchases",                   xp:100, check:(e)=>e.length>=10},
+  {id:"log20",      title:"On A Roll",           desc:"Log 20 purchases",                   xp:125, check:(e)=>e.length>=20},
+  {id:"allCats",    title:"Category Master",     desc:"Use all 9 categories",               xp:150, check:(e)=>new Set(e.map(x=>x.category)).size>=9},
+  {id:"sameDay",    title:"Speed Logger",        desc:"Log 3 purchases on one day",         xp:100, check:(e)=>{const d={};e.forEach(x=>{d[x.date]=(d[x.date]||0)+1;});return Object.values(d).some(v=>v>=3);}},
+  {id:"week",       title:"Week Warrior",        desc:"Log on 7 different days",            xp:200, check:(e)=>new Set(e.map(x=>x.date)).size>=7},
+  {id:"bigmonth",   title:"Big Spender Month",   desc:"Log 20+ purchases in one month",     xp:175, check:(e)=>{const m={};e.forEach(x=>{const k=x.date.slice(0,7);m[k]=(m[k]||0)+1;});return Object.values(m).some(v=>v>=20);}},
+  {id:"under10",    title:"Budget Ninja",        desc:"Log 10 purchases under $10 each",    xp:125, check:(e)=>e.filter(x=>x.amount<10).length>=10},
+  {id:"over50",     title:"Treat Yourself",      desc:"Log 3 purchases over $50",           xp:100, check:(e)=>e.filter(x=>x.amount>50).length>=3},
+  {id:"petlover",   title:"Fur Baby Finance",    desc:"Log 5 Pets purchases",               xp:100, check:(e)=>e.filter(x=>x.category==="Pets").length>=5},
+  {id:"noNotes",    title:"Detail Oriented",     desc:"Add a note to 10 purchases",         xp:125, check:(e)=>e.filter(x=>x.note&&x.note.trim().length>0).length>=10},
+  {id:"healthy",    title:"Healthy Habits",      desc:"Log 5 Health purchases",             xp:100, check:(e)=>e.filter(x=>x.category==="Health").length>=5},
+  {id:"log50",      title:"Half Century",        desc:"Log 50 total purchases",             xp:250, check:(e)=>e.length>=50},
+  {id:"multicat",   title:"Diversified",         desc:"Log in 5 different categories",      xp:125, check:(e)=>new Set(e.map(x=>x.category)).size>=5},
+  {id:"30days",     title:"Monthly Master",      desc:"Log on 30 different days",           xp:300, check:(e)=>new Set(e.map(x=>x.date)).size>=30},
+  {id:"daily_under20", title:"Daily Thrifter",   desc:"Keep total spending under $20 in a day", xp:100, check:(e)=>{const d={};e.forEach(x=>{d[x.date]=(d[x.date]||0)+x.amount;});return Object.values(d).some(v=>v>0&&v<20);}},
+  {id:"daily_under50", title:"Budget Day",       desc:"Keep total spending under $50 in a day", xp:75,  check:(e)=>{const d={};e.forEach(x=>{d[x.date]=(d[x.date]||0)+x.amount;});return Object.values(d).some(v=>v>0&&v<50);}},
+  {id:"savings_3",  title:"Saving Starter",      desc:"Log 3 Savings entries",              xp:100, check:(e)=>e.filter(x=>x.category==="Savings").length>=3},
+  {id:"savings_10", title:"Savings Champion",    desc:"Log 10 Savings entries",             xp:200, check:(e)=>e.filter(x=>x.category==="Savings").length>=10},
+  {id:"week_improve",title:"Spending Down",      desc:"Spend less this week than last week", xp:200, check:(e)=>{
+    const now=new Date(),weekAgo=new Date(now-7*86400000),twoWeeksAgo=new Date(now-14*86400000);
+    const tw=e.filter(x=>new Date(x.date)>=weekAgo&&x.category!=="Savings").reduce((s,x)=>s+x.amount,0);
+    const lw=e.filter(x=>new Date(x.date)>=twoWeeksAgo&&new Date(x.date)<weekAgo&&x.category!=="Savings").reduce((s,x)=>s+x.amount,0);
+    return lw>0&&tw<lw;
+  }},
 ];
 
+// ─── BADGES ────────────────────────────────────────────────────────────────────
 const BADGES = [
-  {id:"first_log",  icon:"🌱",name:"First Blood",        desc:"Log your first purchase",   rarity:"common",  check:(e)=>e.length>=1},
-  {id:"log_10",     icon:"📝",name:"Scribe",             desc:"Log 10 purchases",          rarity:"common",  check:(e)=>e.length>=10},
-  {id:"log_25",     icon:"📚",name:"Chronicler",         desc:"Log 25 purchases",          rarity:"uncommon",check:(e)=>e.length>=25},
-  {id:"log_50",     icon:"🗂️",name:"Archivist",          desc:"Log 50 purchases",          rarity:"rare",    check:(e)=>e.length>=50},
-  {id:"log_100",    icon:"📖",name:"Lorekeeper",         desc:"Log 100 purchases",         rarity:"epic",    check:(e)=>e.length>=100},
-  {id:"big_spender",icon:"💸",name:"High Roller",        desc:"Single purchase over $100", rarity:"uncommon",check:(e)=>e.some(x=>x.amount>=100)},
-  {id:"frugal",     icon:"🪙",name:"Penny Pincher",      desc:"5 purchases under $5",      rarity:"uncommon",check:(e)=>e.filter(x=>x.amount<5).length>=5},
-  {id:"variety",    icon:"🎭",name:"Renaissance Spender",desc:"Use all 7 categories",      rarity:"rare",    check:(e)=>new Set(e.map(x=>x.category)).size>=7},
-  {id:"same_day_3", icon:"⚡",name:"Speed Tracker",      desc:"3 purchases in one day",    rarity:"common",  check:(e)=>{const d={};e.forEach(x=>{d[x.date]=(d[x.date]||0)+1;});return Object.values(d).some(v=>v>=3);}},
-  {id:"7_days",     icon:"🗓️",name:"Week Warrior",       desc:"Log on 7 different days",   rarity:"uncommon",check:(e)=>new Set(e.map(x=>x.date)).size>=7},
-  {id:"30_days",    icon:"🌙",name:"Moon Tracker",       desc:"Log on 30 different days",  rarity:"epic",    check:(e)=>new Set(e.map(x=>x.date)).size>=30},
-  {id:"foodie",     icon:"🍕",name:"Foodie",             desc:"10 Food purchases",         rarity:"uncommon",check:(e)=>e.filter(x=>x.category==="Food").length>=10},
-  {id:"commuter",   icon:"🚌",name:"Commuter",           desc:"10 Transport purchases",    rarity:"uncommon",check:(e)=>e.filter(x=>x.category==="Transport").length>=10},
-  {id:"entertainer",icon:"🎮",name:"Good Times",         desc:"10 Entertainment purchases",rarity:"uncommon",check:(e)=>e.filter(x=>x.category==="Entertainment").length>=10},
-  {id:"xp_500",     icon:"⭐",name:"Rising Star",        desc:"Reach 500 XP",              rarity:"common",  checkXP:(xp)=>xp>=500},
-  {id:"xp_1500",    icon:"🌟",name:"Shining Light",      desc:"Reach 1,500 XP",            rarity:"uncommon",checkXP:(xp)=>xp>=1500},
-  {id:"xp_3500",    icon:"💫",name:"Blazing Trail",      desc:"Reach 3,500 XP",            rarity:"rare",    checkXP:(xp)=>xp>=3500},
-  {id:"xp_7000",    icon:"🌠",name:"Legend",             desc:"Reach 7,000 XP",            rarity:"epic",    checkXP:(xp)=>xp>=7000},
-  // Streak badges
+  {id:"first_log",  icon:"🌱",name:"First Blood",        desc:"Log your first purchase",    rarity:"common",  check:(e)=>e.length>=1},
+  {id:"log_10",     icon:"📝",name:"Scribe",             desc:"Log 10 purchases",           rarity:"common",  check:(e)=>e.length>=10},
+  {id:"log_25",     icon:"📚",name:"Chronicler",         desc:"Log 25 purchases",           rarity:"uncommon",check:(e)=>e.length>=25},
+  {id:"log_50",     icon:"🗂️",name:"Archivist",          desc:"Log 50 purchases",           rarity:"rare",    check:(e)=>e.length>=50},
+  {id:"log_100",    icon:"📖",name:"Lorekeeper",         desc:"Log 100 purchases",          rarity:"epic",    check:(e)=>e.length>=100},
+  {id:"big_spender",icon:"💸",name:"High Roller",        desc:"Single purchase over $100",  rarity:"uncommon",check:(e)=>e.some(x=>x.amount>=100)},
+  {id:"frugal",     icon:"🪙",name:"Penny Pincher",      desc:"5 purchases under $5",       rarity:"uncommon",check:(e)=>e.filter(x=>x.amount<5).length>=5},
+  {id:"variety",    icon:"🎭",name:"Renaissance Spender",desc:"Use all 9 categories",       rarity:"rare",    check:(e)=>new Set(e.map(x=>x.category)).size>=9},
+  {id:"same_day_3", icon:"⚡",name:"Speed Tracker",      desc:"3 purchases in one day",     rarity:"common",  check:(e)=>{const d={};e.forEach(x=>{d[x.date]=(d[x.date]||0)+1;});return Object.values(d).some(v=>v>=3);}},
+  {id:"7_days",     icon:"🗓️",name:"Week Warrior",       desc:"Log on 7 different days",    rarity:"uncommon",check:(e)=>new Set(e.map(x=>x.date)).size>=7},
+  {id:"30_days",    icon:"🌙",name:"Moon Tracker",       desc:"Log on 30 different days",   rarity:"epic",    check:(e)=>new Set(e.map(x=>x.date)).size>=30},
+  {id:"foodie",     icon:"🍕",name:"Foodie",             desc:"10 Food purchases",          rarity:"uncommon",check:(e)=>e.filter(x=>x.category==="Food").length>=10},
+  {id:"commuter",   icon:"🚌",name:"Commuter",           desc:"10 Transport purchases",     rarity:"uncommon",check:(e)=>e.filter(x=>x.category==="Transport").length>=10},
+  {id:"entertainer",icon:"🎮",name:"Good Times",         desc:"10 Entertainment purchases", rarity:"uncommon",check:(e)=>e.filter(x=>x.category==="Entertainment").length>=10},
+  {id:"xp_500",     icon:"⭐",name:"Rising Star",        desc:"Reach 500 XP",               rarity:"common",  checkXP:(xp)=>xp>=500},
+  {id:"xp_1500",    icon:"🌟",name:"Shining Light",      desc:"Reach 1,500 XP",             rarity:"uncommon",checkXP:(xp)=>xp>=1500},
+  {id:"xp_3500",    icon:"💫",name:"Blazing Trail",      desc:"Reach 3,500 XP",             rarity:"rare",    checkXP:(xp)=>xp>=3500},
+  {id:"xp_7000",    icon:"🌠",name:"Legend",             desc:"Reach 7,000 XP",             rarity:"epic",    checkXP:(xp)=>xp>=7000},
   {id:"streak_3",   icon:"🔥",name:"On Fire",            desc:"3 day logging streak",       rarity:"common",  checkStreak:(s)=>s>=3},
   {id:"streak_7",   icon:"🌋",name:"Week Blaze",         desc:"7 day logging streak",       rarity:"uncommon",checkStreak:(s)=>s>=7},
   {id:"streak_14",  icon:"⚡",name:"Fortnight Fury",     desc:"14 day logging streak",      rarity:"rare",    checkStreak:(s)=>s>=14},
   {id:"streak_30",  icon:"💎",name:"Unstoppable",        desc:"30 day logging streak",      rarity:"epic",    checkStreak:(s)=>s>=30},
+  {id:"frugal_day", icon:"🧊",name:"Ice Cold Budget",    desc:"Spend under $20 in a day",   rarity:"uncommon",check:(e)=>{const d={};e.forEach(x=>{d[x.date]=(d[x.date]||0)+x.amount;});return Object.values(d).some(v=>v>0&&v<20);}},
+  {id:"saver_start",icon:"🐖",name:"Piggy Bank",         desc:"Log 3 Savings entries",      rarity:"common",  check:(e)=>e.filter(x=>x.category==="Savings").length>=3},
+  {id:"saver_pro",  icon:"🏦",name:"Savings Pro",        desc:"Log 10 Savings entries",     rarity:"rare",    check:(e)=>e.filter(x=>x.category==="Savings").length>=10},
+  {id:"week_down",  icon:"📉",name:"Downward Trend",     desc:"Spend less than last week",  rarity:"rare",    check:(e)=>{
+    const now=new Date(),weekAgo=new Date(now-7*86400000),twoWeeksAgo=new Date(now-14*86400000);
+    const tw=e.filter(x=>new Date(x.date)>=weekAgo&&x.category!=="Savings").reduce((s,x)=>s+x.amount,0);
+    const lw=e.filter(x=>new Date(x.date)>=twoWeeksAgo&&new Date(x.date)<weekAgo&&x.category!=="Savings").reduce((s,x)=>s+x.amount,0);
+    return lw>0&&tw<lw;
+  }},
+  {id:"saver_epic", icon:"💰",name:"Money Magnet",       desc:"Log 25 Savings entries",     rarity:"epic",    check:(e)=>e.filter(x=>x.category==="Savings").length>=25},
 ];
 
 // ─── HELPERS ───────────────────────────────────────────────────────────────────
@@ -178,28 +198,124 @@ function getLvl(xp, levels) {
   return levels[0];
 }
 
+// ─── PIN SCREEN ────────────────────────────────────────────────────────────────
+function PinScreen({ meta, onSuccess, onBack, isSettingPin, savedPin }) {
+  const [pin, setPin] = useState("");
+  const [confirmPin, setConfirmPin] = useState("");
+  const [step, setStep] = useState(isSettingPin ? "set" : "enter");
+  const [error, setError] = useState("");
+
+  const handleDigit = (d) => {
+    if (step === "set") {
+      if (pin.length < 4) {
+        const next = pin + d;
+        setPin(next);
+        if (next.length === 4) setStep("confirm");
+      }
+    } else if (step === "confirm") {
+      if (confirmPin.length < 4) {
+        const next = confirmPin + d;
+        setConfirmPin(next);
+        if (next.length === 4) {
+          if (next === pin) { onSuccess(next); }
+          else { setError("PINs don't match, try again"); setPin(""); setConfirmPin(""); setStep("set"); }
+        }
+      }
+    } else {
+      if (pin.length < 4) {
+        const next = pin + d;
+        setPin(next);
+        if (next.length === 4) {
+          if (next === savedPin) { onSuccess(null); }
+          else { setError("Wrong PIN"); setPin(""); }
+        }
+      }
+    }
+  };
+
+  const handleDelete = () => { setError(""); if (step==="confirm") setConfirmPin(p=>p.slice(0,-1)); else setPin(p=>p.slice(0,-1)); };
+  const displayPin = step==="confirm" ? confirmPin : pin;
+  const isDark = meta.id === "cameron";
+
+  return (
+    <div style={{minHeight:"100vh",background:isDark?"#0a0608":"#fff0f5",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"32px 24px",fontFamily:"'Segoe UI',sans-serif"}}>
+      <style>{`@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');`}</style>
+      <div style={{fontSize:44,marginBottom:8}}>{meta.emoji}</div>
+      <div style={{fontFamily:"'Fredoka One',cursive",fontSize:24,color:meta.nameColor,marginBottom:4}}>{meta.name}</div>
+      <div style={{color:meta.subColor,fontSize:13,marginBottom:28,fontWeight:600}}>
+        {step==="set"?"Set your PIN":step==="confirm"?"Confirm your PIN":"Enter your PIN"}
+      </div>
+      <div style={{display:"flex",gap:16,marginBottom:8}}>
+        {[0,1,2,3].map(i=>(
+          <div key={i} style={{width:18,height:18,borderRadius:"50%",background:i<displayPin.length?meta.pinActive:`${meta.pinActive}30`,border:`2px solid ${meta.pinActive}60`,transition:"background 0.15s",boxShadow:i<displayPin.length?`0 0 8px ${meta.pinActive}80`:"none"}}/>
+        ))}
+      </div>
+      {error && <div style={{color:"#ef4444",fontSize:12,fontWeight:700,marginBottom:8}}>{error}</div>}
+      <div style={{height:8}}/>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:12,width:220,marginBottom:16}}>
+        {[1,2,3,4,5,6,7,8,9,"",0,"⌫"].map((d,i)=>(
+          <button key={i} onClick={()=>d===""?null:d==="⌫"?handleDelete():handleDigit(String(d))}
+            style={{height:60,borderRadius:16,border:`2px solid ${meta.pinBorder}`,background:d===""?"transparent":isDark?"#1a0d0d":"#fff5f9",color:meta.nameColor,fontSize:d==="⌫"?20:22,fontWeight:800,cursor:d===""?"default":"pointer",fontFamily:"'Fredoka One',cursive",boxShadow:d!==""?`0 2px 8px ${meta.pinActive}20`:"none",opacity:d===""?0:1}}>
+            {d}
+          </button>
+        ))}
+      </div>
+      <button onClick={onBack} style={{background:"transparent",border:"none",color:meta.subColor,fontSize:13,cursor:"pointer",fontWeight:600,fontFamily:"inherit"}}>← Back</button>
+    </div>
+  );
+}
+
 // ─── PROFILE PICKER ────────────────────────────────────────────────────────────
-function ProfilePicker({ onSelect }) {
+const PROFILE_META = {
+  cameron:{id:"cameron",emoji:"🕷️",name:"Cameron",sub:"Spider-Man",bg:"linear-gradient(145deg,#1a0d0d,#0d1525)",border:"#cc000060",nameColor:"#e63030",subColor:"#6b4040",btnBg:"linear-gradient(135deg,#cc0000,#1a3a8f)",shadow:"0 8px 32px #cc000030",pinBg:"#1a0d0d",pinBorder:"#cc000060",pinActive:"#e63030"},
+  hannah: {id:"hannah", emoji:"🎀",name:"Hannah", sub:"Hello Kitty",bg:"linear-gradient(145deg,#fff5f9,#ffeef5)",border:"#ff69b470",nameColor:"#e91e8c",subColor:"#d4829a",btnBg:"linear-gradient(135deg,#ff69b4,#ff1493)",shadow:"0 8px 32px #ff69b430",pinBg:"#fff5f9",pinBorder:"#ff69b470",pinActive:"#e91e8c"},
+};
+
+function ProfilePicker({ onSelect, profileData }) {
+  const [pinScreen, setPinScreen] = useState(null);
+
+  const handleCardTap = (id) => {
+    const data = profileData[id];
+    if (data?.pin) setPinScreen({id, isSettingPin:false, savedPin:data.pin});
+    else setPinScreen({id, isSettingPin:true, savedPin:null});
+  };
+
+  const handlePinSuccess = (newPin) => { onSelect(pinScreen.id, newPin); setPinScreen(null); };
+
+  if (pinScreen) return <PinScreen meta={PROFILE_META[pinScreen.id]} onSuccess={handlePinSuccess} onBack={()=>setPinScreen(null)} isSettingPin={pinScreen.isSettingPin} savedPin={pinScreen.savedPin}/>;
+
   return (
     <div style={{minHeight:"100vh",background:"linear-gradient(160deg,#0a0608 0%,#1a0d1a 50%,#fff0f5 100%)",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"32px 24px",fontFamily:"'Segoe UI',sans-serif"}}>
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');`}</style>
       <div style={{fontSize:52,marginBottom:8}}>💰</div>
       <h1 style={{fontFamily:"'Fredoka One',cursive",fontSize:36,margin:"0 0 6px",background:"linear-gradient(135deg,#e63030,#ff69b4)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"}}>Budget Quest</h1>
-      <div style={{color:"#9ca3af",fontSize:14,marginBottom:40,fontWeight:600}}>Who's playing?</div>
-      <div style={{display:"flex",gap:16,width:"100%",maxWidth:380}}>
-        {[
-          {id:"cameron",emoji:"🕷️",name:"Cameron",sub:"Spider-Man",bg:"linear-gradient(145deg,#1a0d0d,#0d1525)",border:"#cc000060",nameColor:"#e63030",subColor:"#6b4040",btnBg:"linear-gradient(135deg,#cc0000,#1a3a8f)",btnLabel:"Let's go! 🕸️",shadow:"0 8px 32px #cc000030"},
-          {id:"hannah", emoji:"🎀",name:"Hannah", sub:"Hello Kitty",bg:"linear-gradient(145deg,#fff5f9,#ffeef5)",border:"#ff69b470",nameColor:"#e91e8c",subColor:"#d4829a",btnBg:"linear-gradient(135deg,#ff69b4,#ff1493)",btnLabel:"Let's go! 🌸",shadow:"0 8px 32px #ff69b430"},
-        ].map(p=>(
-          <button key={p.id} onClick={()=>onSelect(p.id)} style={{flex:1,background:p.bg,border:`2px solid ${p.border}`,borderRadius:24,padding:"28px 16px",cursor:"pointer",textAlign:"center",boxShadow:p.shadow,transition:"transform 0.15s",fontFamily:"inherit"}}
-            onMouseEnter={e=>e.currentTarget.style.transform="scale(1.03)"}
-            onMouseLeave={e=>e.currentTarget.style.transform="scale(1)"}>
-            <div style={{fontSize:52,marginBottom:10}}>{p.emoji}</div>
-            <div style={{fontFamily:"'Fredoka One',cursive",fontSize:22,color:p.nameColor,marginBottom:6}}>{p.name}</div>
-            <div style={{fontSize:12,color:p.subColor,fontWeight:600}}>{p.sub}</div>
-            <div style={{marginTop:16,background:p.btnBg,borderRadius:12,padding:"10px",color:"#fff",fontWeight:800,fontSize:14,fontFamily:"'Fredoka One',cursive"}}>{p.btnLabel}</div>
-          </button>
-        ))}
+      <div style={{color:"#9ca3af",fontSize:14,marginBottom:28,fontWeight:600}}>Who's playing?</div>
+      <div style={{display:"flex",gap:16,width:"100%",maxWidth:400}}>
+        {[PROFILE_META.cameron, PROFILE_META.hannah].map(p=>{
+          const data = profileData[p.id];
+          const lvl = data ? getLvl(data.xp||0, THEMES[p.id].levels) : null;
+          const streak = data?.streak || 0;
+          return (
+            <button key={p.id} onClick={()=>handleCardTap(p.id)} style={{flex:1,background:p.bg,border:`2px solid ${p.border}`,borderRadius:24,padding:"24px 14px",cursor:"pointer",textAlign:"center",boxShadow:p.shadow,transition:"transform 0.15s",fontFamily:"inherit"}}
+              onMouseEnter={e=>e.currentTarget.style.transform="scale(1.03)"}
+              onMouseLeave={e=>e.currentTarget.style.transform="scale(1)"}>
+              <div style={{fontSize:48,marginBottom:8}}>{p.emoji}</div>
+              <div style={{fontFamily:"'Fredoka One',cursive",fontSize:20,color:p.nameColor,marginBottom:2}}>{p.name}</div>
+              <div style={{fontSize:11,color:p.subColor,fontWeight:600,marginBottom:10}}>{p.sub}</div>
+              {lvl && (
+                <div style={{background:`${p.border}`,borderRadius:10,padding:"8px 10px",marginBottom:10}}>
+                  <div style={{fontSize:18,marginBottom:2}}>{lvl.char}</div>
+                  <div style={{fontFamily:"'Fredoka One',cursive",fontSize:13,color:lvl.color}}>{lvl.title}</div>
+                  <div style={{fontSize:10,color:p.subColor,marginTop:2,fontWeight:600}}>Level {lvl.level}</div>
+                </div>
+              )}
+              {streak>0 && <div style={{fontSize:12,color:"#f97316",fontWeight:800,marginBottom:8}}>🔥 {streak} day streak</div>}
+              <div style={{background:p.btnBg,borderRadius:12,padding:"9px",color:"#fff",fontWeight:800,fontSize:13,fontFamily:"'Fredoka One',cursive"}}>
+                {data?.pin ? "🔒 Enter PIN" : "🔓 Set PIN"}
+              </div>
+            </button>
+          );
+        })}
       </div>
     </div>
   );
@@ -253,7 +369,7 @@ function BadgeCard({badge,unlocked,t}) {
   );
 }
 
-// ─── SAVING INDICATOR ──────────────────────────────────────────────────────────
+// ─── SAVE INDICATOR ────────────────────────────────────────────────────────────
 function SaveIndicator({status,errorMsg,t}) {
   if (status==="idle") return null;
   const map={saving:{icon:"💾",text:"Saving...",color:t.subColor},saved:{icon:"✅",text:"Saved!",color:t.questDoneColor},error:{icon:"⚠️",text:"Save failed",color:"#ef4444"}};
@@ -261,82 +377,93 @@ function SaveIndicator({status,errorMsg,t}) {
   return (
     <div style={{position:"fixed",bottom:20,left:12,right:12,background:t.cardBg,border:`1px solid ${status==="error"?"#ef4444":t.cardBorder}`,borderRadius:14,padding:"10px 14px",fontSize:12,fontWeight:700,color:s.color,zIndex:999,boxShadow:"0 2px 12px #00000040"}}>
       <div>{s.icon} {s.text}</div>
-      {status==="error" && errorMsg && <div style={{fontSize:10,marginTop:4,color:"#ef4444",fontWeight:500,wordBreak:"break-all",opacity:0.85}}>{errorMsg}</div>}
+      {status==="error"&&errorMsg&&<div style={{fontSize:10,marginTop:4,color:"#ef4444",fontWeight:500,wordBreak:"break-all",opacity:0.85}}>{errorMsg}</div>}
     </div>
   );
 }
 
 // ─── MAIN APP ──────────────────────────────────────────────────────────────────
 export default function BudgetQuest() {
-  const [profile, setProfile]     = useState(null);
-  const [entries, setEntries]     = useState([]);
-  const [xp, setXP]               = useState(0);
+  const [profile, setProfile]       = useState(null);
+  const [profileData, setProfileData] = useState({cameron:{}, hannah:{}});
+  const [entries, setEntries]       = useState([]);
+  const [xp, setXP]                 = useState(0);
   const [completedQuests, setCompletedQuests] = useState([]);
   const [unlockedBadges, setUnlockedBadges]   = useState([]);
-  const [toast, setToast]         = useState(null);
-  const [tab, setTab]             = useState("log");
-  const [form, setForm]           = useState({amount:"",category:"Food",note:"",date:new Date().toISOString().split("T")[0]});
-  const [xpAnim, setXPAnim]       = useState(null);
-  const [btnActive, setBtnActive] = useState(false);
+  const [toast, setToast]           = useState(null);
+  const [tab, setTab]               = useState("log");
+  const [form, setForm]             = useState({amount:"",category:"Food",note:"",date:new Date().toISOString().split("T")[0]});
+  const [xpAnim, setXPAnim]         = useState(null);
+  const [btnActive, setBtnActive]   = useState(false);
   const [saveStatus, setSaveStatus] = useState("idle");
-  const [saveError, setSaveError] = useState("");
-  const [loading, setLoading]     = useState(false);
+  const [saveError, setSaveError]   = useState("");
+  const [loading, setLoading]       = useState(false);
   const [selectedCat, setSelectedCat] = useState(null);
   const [deleteConfirm, setDeleteConfirm] = useState(null);
-  const [streak, setStreak] = useState(0);
+  const [streak, setStreak]         = useState(0);
   const [lastLogDate, setLastLogDate] = useState(null);
 
-  // Load data when profile selected — always wipe state first so previous profile never bleeds through
-  useEffect(() => {
+  // Load both profiles on mount for picker display
+  useEffect(()=>{
+    Promise.all([sb.load("cameron"),sb.load("hannah")]).then(([cam,han])=>{
+      setProfileData({cameron:cam||{},hannah:han||{}});
+    }).catch(()=>{});
+  },[]);
+
+  // Load selected profile data
+  useEffect(()=>{
     if (!profile) return;
-    setEntries([]); setXP(0); setCompletedQuests([]); setUnlockedBadges([]);
+    setEntries([]); setXP(0); setCompletedQuests([]); setUnlockedBadges([]); setStreak(0); setLastLogDate(null);
     setLoading(true);
-    sb.load(profile).then(data => {
+    sb.load(profile).then(data=>{
       if (data) {
-        setEntries(data.entries || []);
-        setXP(data.xp || 0);
-        setCompletedQuests(data.quests || []);
-        setUnlockedBadges(data.badges || []);
-        setStreak(data.streak || 0);
-        setLastLogDate(data.last_log_date || null);
+        setEntries(data.entries||[]);
+        setXP(data.xp||0);
+        setCompletedQuests(data.quests||[]);
+        setUnlockedBadges(data.badges||[]);
+        setStreak(data.streak||0);
+        setLastLogDate(data.last_log_date||null);
       }
       setLoading(false);
     }).catch(()=>setLoading(false));
-  }, [profile]);
+  },[profile]);
 
-  // Debounced save whenever state changes
-  const saveData = useCallback(async (newEntries, newXP, newQuests, newBadges, newStreakVal=streak, newLastLogDate=lastLogDate) => {
+  const saveData = useCallback(async (newEntries,newXP,newQuests,newBadges,newStreakVal=streak,newLastLogDate=lastLogDate)=>{
     setSaveStatus("saving");
     try {
-      await sb.save(profile, { entries: newEntries, xp: newXP, quests: newQuests, badges: newBadges, streak: newStreakVal, last_log_date: newLastLogDate });
+      const pin=profileData[profile]?.pin||null;
+      await sb.save(profile,{entries:newEntries,xp:newXP,quests:newQuests,badges:newBadges,streak:newStreakVal,last_log_date:newLastLogDate,pin});
       setSaveStatus("saved");
-      setTimeout(()=>setSaveStatus("idle"), 2000);
+      setTimeout(()=>setSaveStatus("idle"),2000);
     } catch(e) {
-      console.error("Supabase save error:", e.message);
       setSaveError(e.message);
       setSaveStatus("error");
-      setTimeout(()=>{ setSaveStatus("idle"); setSaveError(""); }, 6000);
+      setTimeout(()=>{setSaveStatus("idle");setSaveError("");},6000);
     }
-  }, [profile]);
+  },[profile,profileData,streak,lastLogDate]);
 
   const deleteEntry = (id) => {
-    const entry = entries.find(e => e.id === id);
-    const newEntries = entries.filter(e => e.id !== id);
-    // Recalculate XP lost: base 10 + category 5 + same-day bonus 10 if applicable
-    let lost = 10;
-    if (entry.category) lost += 5;
-    const today = new Date().toISOString().split("T")[0];
-    if (entry.date === today) lost += 10;
-    const newXP = Math.max(0, xp - lost);
-    setEntries(newEntries);
-    setXP(newXP);
-    setDeleteConfirm(null);
-    saveData(newEntries, newXP, completedQuests, unlockedBadges);
+    const entry=entries.find(e=>e.id===id);
+    const newEntries=entries.filter(e=>e.id!==id);
+    let lost=10;
+    if (entry.category) lost+=5;
+    const today=new Date().toISOString().split("T")[0];
+    if (entry.date===today) lost+=10;
+    const newXP=Math.max(0,xp-lost);
+    setEntries(newEntries); setXP(newXP); setDeleteConfirm(null);
+    saveData(newEntries,newXP,completedQuests,unlockedBadges);
   };
 
-  if (!profile) return <ProfilePicker onSelect={p=>{setProfile(p);setTab("log");}}/>;
+  if (!profile) return <ProfilePicker profileData={profileData} onSelect={(p,newPin)=>{
+    if (newPin) {
+      const updated={...profileData,[p]:{...(profileData[p]||{}),pin:newPin}};
+      setProfileData(updated);
+      sb.save(p,{...(profileData[p]||{}),pin:newPin});
+    }
+    setProfile(p); setTab("log");
+  }}/>;
 
-  const t = THEMES[profile];
+  const t=THEMES[profile];
 
   if (loading) return (
     <div style={{minHeight:"100vh",background:t.pageBg,display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column",gap:16,fontFamily:"'Segoe UI',sans-serif"}}>
@@ -347,10 +474,10 @@ export default function BudgetQuest() {
     </div>
   );
 
-  const showToast = (msg) => setToast(msg);
+  const showToast=(msg)=>setToast(msg);
 
-  const addEntry = () => {
-    if (!form.amount || isNaN(parseFloat(form.amount))) return;
+  const addEntry=()=>{
+    if (!form.amount||isNaN(parseFloat(form.amount))) return;
     setBtnActive(true); setTimeout(()=>setBtnActive(false),200);
     const entry={...form,amount:parseFloat(form.amount),id:Date.now()};
     const newEntries=[entry,...entries];
@@ -359,35 +486,28 @@ export default function BudgetQuest() {
     if (form.category) gained+=5;
     const today=new Date().toISOString().split("T")[0];
     if (form.date===today) gained+=10;
+    if (form.category==="Savings"){gained+=15; setTimeout(()=>showToast("🐖 Savings logged! +15 bonus XP!"),400);}
 
-    // Streak calculation
-    const yesterday = new Date(Date.now()-86400000).toISOString().split("T")[0];
-    let newStreak = streak;
-    let newLastLogDate = lastLogDate;
-    const alreadyLoggedToday = entries.some(e=>e.date===today);
+    // Streak
+    const yesterday=new Date(Date.now()-86400000).toISOString().split("T")[0];
+    let newStreak=streak, newLastLogDate=lastLogDate;
+    const alreadyLoggedToday=entries.some(e=>e.date===today);
     if (!alreadyLoggedToday) {
-      if (lastLogDate === yesterday) {
-        newStreak = streak + 1;
-      } else if (lastLogDate === today) {
-        newStreak = streak;
-      } else {
-        newStreak = 1;
-      }
-      newLastLogDate = today;
+      if (lastLogDate===yesterday) newStreak=streak+1;
+      else if (lastLogDate===today) newStreak=streak;
+      else newStreak=1;
+      newLastLogDate=today;
     }
-
-    // Streak milestone XP bonuses
-    const STREAK_MILESTONES = {3:100, 7:250, 14:500, 30:1000};
-    let streakBonus = 0;
-    if (newStreak !== streak && STREAK_MILESTONES[newStreak]) {
-      streakBonus = STREAK_MILESTONES[newStreak];
-      setTimeout(()=>showToast(`🔥 ${newStreak} Day Streak! +${streakBonus} bonus XP!`), 600);
-    } else if (newStreak !== streak && newStreak > 1) {
-      setTimeout(()=>showToast(`🔥 ${newStreak} day streak! Keep it up!`), 600);
+    const STREAK_MILESTONES={3:100,7:250,14:500,30:1000};
+    let streakBonus=0;
+    if (newStreak!==streak&&STREAK_MILESTONES[newStreak]) {
+      streakBonus=STREAK_MILESTONES[newStreak];
+      setTimeout(()=>showToast(`🔥 ${newStreak} Day Streak! +${streakBonus} bonus XP!`),600);
+    } else if (newStreak!==streak&&newStreak>1) {
+      setTimeout(()=>showToast(`🔥 ${newStreak} day streak! Keep it up!`),600);
     }
 
     const newXP=xp+gained;
-
     setXPAnim(`+${gained} XP ${t.xpPopSuffix}`);
     setTimeout(()=>setXPAnim(null),1600);
 
@@ -403,7 +523,15 @@ export default function BudgetQuest() {
         questBonus+=q.xp; newQuests.push(q.id);
       }
     });
-    const finalXP=newXP+questBonus+streakBonus;
+
+    // Daily frugal bonus
+    const todaySpend=newEntries.filter(e=>e.date===today&&e.category!=="Savings").reduce((s,e)=>s+e.amount,0);
+    let frugalBonus=0;
+    const alreadyGotFrugal=entries.some(e=>e.date===today&&e.category!=="Savings");
+    if (!alreadyGotFrugal&&todaySpend>0&&todaySpend<20){frugalBonus=50; setTimeout(()=>showToast("🧊 Under $20 today! +50 bonus XP!"),700);}
+    else if (!alreadyGotFrugal&&todaySpend>0&&todaySpend<50){frugalBonus=25; setTimeout(()=>showToast("💚 Under $50 today! +25 bonus XP!"),700);}
+
+    const finalXP=newXP+questBonus+streakBonus+frugalBonus;
 
     const newBadgeIds=BADGES.filter(b=>{
       if (unlockedBadges.includes(b.id)) return false;
@@ -418,14 +546,15 @@ export default function BudgetQuest() {
     setEntries(newEntries); setXP(finalXP);
     setCompletedQuests(newQuests); setUnlockedBadges(newBadges);
     setStreak(newStreak); setLastLogDate(newLastLogDate);
-    saveData(newEntries, finalXP, newQuests, newBadges, newStreak, newLastLogDate);
+    setProfileData(pd=>({...pd,[profile]:{...(pd[profile]||{}),xp:finalXP,streak:newStreak,last_log_date:newLastLogDate}}));
+    saveData(newEntries,finalXP,newQuests,newBadges,newStreak,newLastLogDate);
     setForm(f=>({...f,amount:"",note:""}));
   };
 
   const totalSpent=entries.reduce((s,e)=>s+e.amount,0);
   const badgeCount=unlockedBadges.length;
   const byCategory=CATEGORIES.map(cat=>({
-    cat,total:entries.filter(e=>e.category===cat).reduce((s,e)=>s+e.amount,0),
+    cat, total:entries.filter(e=>e.category===cat).reduce((s,e)=>s+e.amount,0),
     count:entries.filter(e=>e.category===cat).length,
   })).filter(c=>c.count>0).sort((a,b)=>b.total-a.total);
 
@@ -468,21 +597,19 @@ export default function BudgetQuest() {
         {xpAnim&&<div style={{position:"absolute",top:8,right:12,color:t.xpNumColor,fontWeight:900,fontSize:20,fontFamily:"'Fredoka One',cursive",animation:"xpPop 1.5s ease forwards",pointerEvents:"none"}}>{xpAnim}</div>}
       </div>
 
-      {/* Streak Bar */}
+      {/* Streak */}
       <div style={{background:t.cardBg,borderRadius:16,padding:"12px 18px",marginBottom:18,border:`2px solid ${streak>=7?"#f97316":"#f9731630"}`,boxShadow:streak>=1?`0 2px 12px #f9731625`:"none",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
         <div style={{display:"flex",alignItems:"center",gap:10}}>
           <div style={{fontSize:28,filter:streak>=1?"drop-shadow(0 0 8px #f9731680)":"grayscale(1)"}}>{streak>=14?"🌋":streak>=7?"🔥":streak>=3?"🔥":"🕯️"}</div>
           <div>
             <div style={{fontFamily:"'Fredoka One',cursive",fontSize:16,color:streak>=1?"#f97316":t.subColor}}>{streak} Day Streak</div>
             <div style={{fontSize:11,color:t.subColor,fontWeight:600}}>
-              {streak===0?"Log today to start your streak!":streak>=30?"🏆 Legendary streak!":streak>=14?"⚡ Incredible!":streak>=7?"🔥 On fire!":streak>=3?"💪 Keep it going!":"📅 Log tomorrow to continue!"}
+              {streak===0?"Log today to start your streak!":streak>=30?"🏆 Legendary!":streak>=14?"⚡ Incredible!":streak>=7?"🔥 On fire!":streak>=3?"💪 Keep it going!":"📅 Log tomorrow to continue!"}
             </div>
           </div>
         </div>
         <div style={{textAlign:"right"}}>
-          {[3,7,14,30].map(m=>(
-            <div key={m} style={{display:"inline-block",width:8,height:8,borderRadius:"50%",background:streak>=m?"#f97316":"#f9731630",marginLeft:4,boxShadow:streak>=m?"0 0 6px #f97316":"none"}}/>
-          ))}
+          {[3,7,14,30].map(m=>(<div key={m} style={{display:"inline-block",width:8,height:8,borderRadius:"50%",background:streak>=m?"#f97316":"#f9731630",marginLeft:4,boxShadow:streak>=m?"0 0 6px #f97316":"none"}}/>))}
           <div style={{fontSize:10,color:t.subColor,marginTop:3,fontWeight:600}}>3·7·14·30</div>
         </div>
       </div>
@@ -503,12 +630,18 @@ export default function BudgetQuest() {
         <div style={card}>
           <div style={{fontFamily:"'Fredoka One',cursive",fontSize:20,color:t.headingColor,marginBottom:16}}>{t.logTabIcon} Add a purchase</div>
           <div style={{display:"flex",gap:10,marginBottom:14,minWidth:0}}>
-            <div style={{flex:"0 0 42%",minWidth:0}}><label style={lbl}>Amount ($)</label><input type="number" placeholder="0.00" value={form.amount} onChange={e=>setForm(f=>({...f,amount:e.target.value}))} style={inp}/></div>
-            <div style={{flex:"0 0 52%",minWidth:0}}><label style={lbl}>Date</label><input type="date" value={form.date} onChange={e=>setForm(f=>({...f,date:e.target.value}))} style={{...inp,fontSize:12,paddingLeft:8,paddingRight:4,WebkitAppearance:"none",appearance:"none"}}/></div>
+            <div style={{flex:"0 0 42%",minWidth:0}}>
+              <label style={lbl}>Amount ($)</label>
+              <input type="number" placeholder="0.00" value={form.amount} onChange={e=>setForm(f=>({...f,amount:e.target.value}))} style={inp}/>
+            </div>
+            <div style={{flex:"0 0 52%",minWidth:0}}>
+              <label style={lbl}>Date</label>
+              <input type="date" value={form.date} onChange={e=>setForm(f=>({...f,date:e.target.value}))} style={{...inp,fontSize:12,paddingLeft:8,paddingRight:4,WebkitAppearance:"none",appearance:"none"}}/>
+            </div>
           </div>
           <div style={{marginBottom:14}}>
             <label style={lbl}>Category <span style={{color:t.secondary,fontStyle:"italic",textTransform:"none",letterSpacing:0}}>+5 XP</span></label>
-            <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:6}}>
+            <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:6}}>
               {CATEGORIES.map(c=>(
                 <button key={c} onClick={()=>setForm(f=>({...f,category:c}))} style={{padding:"8px 4px",borderRadius:12,border:`2px solid ${form.category===c?t.catColors[c]:t.catUnselBorder}`,background:form.category===c?`${t.catColors[c]}20`:t.catUnselBg,color:form.category===c?t.catColors[c]:t.catUnselColor,cursor:"pointer",fontSize:11,fontWeight:700,transition:"all 0.15s",boxShadow:form.category===c?`0 0 12px ${t.catColors[c]}40`:"none",fontFamily:"inherit"}}>
                   <div style={{fontSize:18}}>{CAT_ICONS[c]}</div><div>{c}</div>
@@ -516,7 +649,10 @@ export default function BudgetQuest() {
               ))}
             </div>
           </div>
-          <div style={{marginBottom:14}}><label style={lbl}>Note (optional)</label><input type="text" placeholder="What was it for?" value={form.note} onChange={e=>setForm(f=>({...f,note:e.target.value}))} style={inp}/></div>
+          <div style={{marginBottom:14}}>
+            <label style={lbl}>Note (optional)</label>
+            <input type="text" placeholder="What was it for?" value={form.note} onChange={e=>setForm(f=>({...f,note:e.target.value}))} style={inp}/>
+          </div>
           <div style={{display:"flex",gap:8,marginBottom:14,background:t.xpRowBg,borderRadius:12,padding:"10px 14px",border:`1px solid ${t.xpRowBorder}`}}>
             {[["Base","10 XP",0],["Category","5 XP",1],["Today","10 XP",2]].map(([k,v,i])=>(
               <div key={k} style={{flex:1,textAlign:"center"}}>
@@ -546,12 +682,12 @@ export default function BudgetQuest() {
                 </div>
                 <div style={{display:"flex",alignItems:"center",gap:8,flexShrink:0}}>
                   <div style={{color:t.xpNumColor,fontWeight:900,fontFamily:"'Fredoka One',cursive",fontSize:16}}>${e.amount.toFixed(2)}</div>
-                  {deleteConfirm===e.id ? (
+                  {deleteConfirm===e.id?(
                     <div style={{display:"flex",gap:4}}>
                       <button onClick={()=>deleteEntry(e.id)} style={{background:"#ef4444",border:"none",borderRadius:8,color:"#fff",fontSize:11,fontWeight:800,padding:"4px 8px",cursor:"pointer"}}>Delete</button>
                       <button onClick={()=>setDeleteConfirm(null)} style={{background:t.cardBorder,border:"none",borderRadius:8,color:t.bodyText,fontSize:11,fontWeight:800,padding:"4px 8px",cursor:"pointer"}}>Cancel</button>
                     </div>
-                  ) : (
+                  ):(
                     <button onClick={()=>setDeleteConfirm(e.id)} style={{background:"transparent",border:`1px solid #ef444460`,borderRadius:8,color:"#ef4444",fontSize:14,padding:"4px 8px",cursor:"pointer",lineHeight:1}}>🗑️</button>
                   )}
                 </div>
@@ -572,7 +708,10 @@ export default function BudgetQuest() {
                 <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
                   <div style={{display:"flex",alignItems:"center",gap:10}}>
                     <div style={{fontSize:24}}>{done?"✅":"🔲"}</div>
-                    <div><div style={{fontWeight:800,color:done?t.questDoneColor:t.bodyText,fontFamily:"'Fredoka One',cursive",fontSize:16}}>{q.title}</div><div style={{fontSize:12,color:done?t.questDoneDesc:t.subColor,marginTop:2}}>{q.desc}</div></div>
+                    <div>
+                      <div style={{fontWeight:800,color:done?t.questDoneColor:t.bodyText,fontFamily:"'Fredoka One',cursive",fontSize:16}}>{q.title}</div>
+                      <div style={{fontSize:12,color:done?t.questDoneDesc:t.subColor,marginTop:2}}>{q.desc}</div>
+                    </div>
                   </div>
                   <div style={{color:t.xpNumColor,fontWeight:900,fontFamily:"'Fredoka One',cursive",fontSize:18,whiteSpace:"nowrap"}}>+{q.xp} XP</div>
                 </div>
@@ -587,8 +726,13 @@ export default function BudgetQuest() {
         <div>
           <div style={{...card,padding:"14px 18px",marginBottom:16}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-              <div><div style={{fontFamily:"'Fredoka One',cursive",color:t.headingColor,fontSize:20}}>Badge Cabinet</div><div style={{color:t.badgeCountColor,fontSize:12,marginTop:2,fontWeight:600}}>{badgeCount} of {BADGES.length} unlocked</div></div>
-              <div style={{display:"flex",gap:8}}>{["common","uncommon","rare","epic"].map(r=>(<div key={r} style={{textAlign:"center"}}><div style={{width:12,height:12,borderRadius:"50%",background:t.rarity[r].border,margin:"0 auto 2px",boxShadow:`0 0 6px ${t.rarity[r].border}`}}/><div style={{fontSize:9,color:t.rarity[r].color,fontWeight:700}}>{r[0].toUpperCase()}</div></div>))}</div>
+              <div>
+                <div style={{fontFamily:"'Fredoka One',cursive",color:t.headingColor,fontSize:20}}>Badge Cabinet</div>
+                <div style={{color:t.badgeCountColor,fontSize:12,marginTop:2,fontWeight:600}}>{badgeCount} of {BADGES.length} unlocked</div>
+              </div>
+              <div style={{display:"flex",gap:8}}>
+                {["common","uncommon","rare","epic"].map(r=>(<div key={r} style={{textAlign:"center"}}><div style={{width:12,height:12,borderRadius:"50%",background:t.rarity[r].border,margin:"0 auto 2px",boxShadow:`0 0 6px ${t.rarity[r].border}`}}/><div style={{fontSize:9,color:t.rarity[r].color,fontWeight:700}}>{r[0].toUpperCase()}</div></div>))}
+              </div>
             </div>
             <div style={{height:8,background:t.badgeBarBg,borderRadius:99,marginTop:12,overflow:"hidden",border:`1px solid ${t.badgeBarBorder}`}}>
               <div style={{height:"100%",width:`${(badgeCount/BADGES.length)*100}%`,background:t.badgeBarGrad,borderRadius:99,transition:"width 0.7s cubic-bezier(.34,1.56,.64,1)",boxShadow:t.badgeBarShadow}}/>
@@ -603,7 +747,7 @@ export default function BudgetQuest() {
       {/* STATS */}
       {tab==="stats"&&(
         <div>
-          {selectedCat ? (
+          {selectedCat?(
             <div>
               <button onClick={()=>setSelectedCat(null)} style={{background:"transparent",border:`1px solid ${t.cardBorder}`,borderRadius:99,padding:"6px 14px",color:t.subColor,fontSize:13,cursor:"pointer",fontWeight:600,fontFamily:"inherit",marginBottom:14}}>← Back to Stats</button>
               <div style={{...card,padding:"14px 18px",marginBottom:14}}>
@@ -624,12 +768,12 @@ export default function BudgetQuest() {
                     </div>
                     <div style={{display:"flex",alignItems:"center",gap:8,flexShrink:0}}>
                       <div style={{fontFamily:"'Fredoka One',cursive",color:t.xpNumColor,fontSize:18}}>${e.amount.toFixed(2)}</div>
-                      {deleteConfirm===e.id ? (
+                      {deleteConfirm===e.id?(
                         <div style={{display:"flex",gap:4}}>
                           <button onClick={()=>deleteEntry(e.id)} style={{background:"#ef4444",border:"none",borderRadius:8,color:"#fff",fontSize:11,fontWeight:800,padding:"4px 8px",cursor:"pointer"}}>Delete</button>
                           <button onClick={()=>setDeleteConfirm(null)} style={{background:t.cardBorder,border:"none",borderRadius:8,color:t.bodyText,fontSize:11,fontWeight:800,padding:"4px 8px",cursor:"pointer"}}>Cancel</button>
                         </div>
-                      ) : (
+                      ):(
                         <button onClick={()=>setDeleteConfirm(e.id)} style={{background:"transparent",border:`1px solid #ef444460`,borderRadius:8,color:"#ef4444",fontSize:14,padding:"4px 8px",cursor:"pointer",lineHeight:1}}>🗑️</button>
                       )}
                     </div>
@@ -637,7 +781,7 @@ export default function BudgetQuest() {
                 </div>
               ))}
             </div>
-          ) : (
+          ):(
             <div>
               <div style={{background:t.statsHeaderBg,backgroundImage:t.statsHeaderBgImg,borderRadius:20,padding:"20px",marginBottom:14,textAlign:"center",boxShadow:`0 8px 32px ${t.primary}30`}}>
                 <div style={{color:"#ffffff60",fontSize:12,fontWeight:700,textTransform:"uppercase",letterSpacing:1,marginBottom:4}}>Total Tracked</div>
