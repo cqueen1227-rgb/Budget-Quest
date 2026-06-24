@@ -68,11 +68,36 @@ const THEMES = {
     },
     catColors:{Food:"#e63030",Transport:"#2952c4",Entertainment:"#c026d3",Shopping:"#e8870a",Bills:"#dc2626",Health:"#16a34a",Pets:"#f97316",Savings:"#10b981",Other:"#6b7280"},
     levels:[
-      {level:1,title:"Friendly Neighbor", minXP:0,   color:"#9ca3af",bg:"#1a1017",char:"🕷️"},
-      {level:2,title:"Web Slinger",       minXP:500, color:"#2952c4",bg:"#0d1a3a",char:"🕸️"},
-      {level:3,title:"Wall Crawler",      minXP:1500,color:"#e63030",bg:"#3a0d0d",char:"🦸"},
-      {level:4,title:"Spider-Sense",      minXP:3500,color:"#f5c842",bg:"#2a1f00",char:"⚡"},
+      {level:1,title:"Friendly Neighbor",minXP:0,color:"#9ca3af",bg:"#1a1017",char:"🕷️"},
+      {level:2,title:"Web Slinger",minXP:500,color:"#2952c4",bg:"#0d1a3a",char:"🕸️"},
+      {level:3,title:"Wall Crawler",minXP:1500,color:"#e63030",bg:"#3a0d0d",char:"🦸"},
+      {level:4,title:"Spider-Sense",minXP:3500,color:"#f5c842",bg:"#2a1f00",char:"⚡"},
       {level:5,title:"Amazing Spider-Man",minXP:7000,color:"#e63030",bg:"#1a0a0a",char:"🕷️"},
+      {level:6,title:"Scarlet Guardian",minXP:12000,color:"#cc0000",bg:"#2a0000",char:"🛡️"},
+      {level:7,title:"Iron Spider",minXP:20000,color:"#f97316",bg:"#2a1200",char:"🤖"},
+      {level:8,title:"Budget Avenger",minXP:35000,color:"#f5c842",bg:"#1a1500",char:"⚜️"},
+      {level:9,title:"Multiverse Master",minXP:55000,color:"#a855f7",bg:"#1a0a2e",char:"🌀"},
+      {level:10,title:"The Spectacular",minXP:80000,color:"#ffffff",bg:"#0a0608",char:"💠"},
+      {level:11,title:"Night Crawler",minXP:115000,color:"#6b7280",bg:"#0d0d0d",char:"🌑"},
+      {level:12,title:"Shadow Stalker",minXP:160000,color:"#818cf8",bg:"#0a0a1a",char:"👁️"},
+      {level:13,title:"Web Architect",minXP:220000,color:"#c084fc",bg:"#1a0a2e",char:"🔮"},
+      {level:14,title:"Silk Spinner",minXP:295000,color:"#2952c4",bg:"#0d1a3a",char:"🕸️"},
+      {level:15,title:"Venom Breaker",minXP:390000,color:"#374151",bg:"#0a0d0d",char:"💀"},
+      {level:16,title:"Crimson Crusader",minXP:510000,color:"#dc2626",bg:"#2a0000",char:"❤️"},
+      {level:17,title:"Steel Weaver",minXP:660000,color:"#6b7280",bg:"#0d0d0d",char:"⚙️"},
+      {level:18,title:"Quantum Leaper",minXP:845000,color:"#3b82f6",bg:"#0a1a2a",char:"🌊"},
+      {level:19,title:"Dimension Drifter",minXP:1075000,color:"#06b6d4",bg:"#0a1a1a",char:"🌪️"},
+      {level:20,title:"Cosmic Ranger",minXP:1365000,color:"#f5c842",bg:"#1a1a00",char:"🌟"},
+      {level:21,title:"Apex Predator",minXP:1730000,color:"#ef4444",bg:"#2a0000",char:"🦅"},
+      {level:22,title:"Eclipse Knight",minXP:2190000,color:"#7c3aed",bg:"#1a0a2e",char:"🌘"},
+      {level:23,title:"Nova Sentinel",minXP:2770000,color:"#f59e0b",bg:"#1a1200",char:"💫"},
+      {level:24,title:"Omega Weaver",minXP:3500000,color:"#10b981",bg:"#0a2a1a",char:"🔱"},
+      {level:25,title:"Infinity Slinger",minXP:4420000,color:"#f5c842",bg:"#1a1a00",char:"♾️"},
+      {level:26,title:"Galactic Guardian",minXP:5590000,color:"#8b5cf6",bg:"#0a0a2e",char:"🌌"},
+      {level:27,title:"Supreme Spider",minXP:7070000,color:"#e63030",bg:"#1a0a0a",char:"🕷️"},
+      {level:28,title:"Legendary Webmaster",minXP:8940000,color:"#f5c842",bg:"#1a1a00",char:"📜"},
+      {level:29,title:"Godlike Guardian",minXP:11300000,color:"#fbbf24",bg:"#1a1200",char:"⚡"},
+      {level:30,title:"The One True Spider",minXP:14300000,color:"#ffffff",bg:"#0a0608",char:"💠"},
     ],
     titleGrad:"linear-gradient(135deg,#e63030,#f5c842,#2952c4)", titleShadow:"drop-shadow(0 2px 8px #cc000060)",
     tagline:"🕸️ With great spending comes great tracking 🕸️", taglineColor:"#6b7280",
@@ -112,11 +137,36 @@ const THEMES = {
     },
     catColors:{Food:"#ff69b4",Transport:"#e91e8c",Entertainment:"#c2185b",Shopping:"#ff1493",Bills:"#f06292",Health:"#f48fb1",Pets:"#ff9800",Savings:"#34d399",Other:"#d4829a"},
     levels:[
-      {level:1,title:"Curious Kitty",  minXP:0,   color:"#d4829a",bg:"#fff0f5",char:"🐱"},
-      {level:2,title:"Sweet Saver",    minXP:500, color:"#ff69b4",bg:"#ffe4ef",char:"🎀"},
-      {level:3,title:"Budget Bow",     minXP:1500,color:"#e91e8c",bg:"#fce4ec",char:"🌸"},
-      {level:4,title:"Star Kitty",     minXP:3500,color:"#c2185b",bg:"#f8bbd0",char:"⭐"},
-      {level:5,title:"Hello Champion", minXP:7000,color:"#e91e8c",bg:"#fce4ec",char:"👑"},
+      {level:1,title:"Curious Kitty",minXP:0,color:"#d4829a",bg:"#fff0f5",char:"🐱"},
+      {level:2,title:"Sweet Saver",minXP:500,color:"#ff69b4",bg:"#ffe4ef",char:"🎀"},
+      {level:3,title:"Budget Bow",minXP:1500,color:"#e91e8c",bg:"#fce4ec",char:"🌸"},
+      {level:4,title:"Star Kitty",minXP:3500,color:"#c2185b",bg:"#f8bbd0",char:"⭐"},
+      {level:5,title:"Hello Champion",minXP:7000,color:"#e91e8c",bg:"#fce4ec",char:"👑"},
+      {level:6,title:"Ribbon Royale",minXP:12000,color:"#ff1493",bg:"#fce4ec",char:"🎗️"},
+      {level:7,title:"Kitty Duchess",minXP:20000,color:"#c2185b",bg:"#f8bbd0",char:"🏰"},
+      {level:8,title:"Budget Princess",minXP:35000,color:"#ff69b4",bg:"#fce4ec",char:"👸"},
+      {level:9,title:"Diamond Kitty",minXP:55000,color:"#a855f7",bg:"#f3e8ff",char:"💎"},
+      {level:10,title:"Hello Empress",minXP:80000,color:"#fbbf24",bg:"#fff7ed",char:"🌟"},
+      {level:11,title:"Pearl Purrfect",minXP:115000,color:"#f9a8d4",bg:"#fff0f5",char:"🪷"},
+      {level:12,title:"Rose Keeper",minXP:160000,color:"#f43f5e",bg:"#fce4ec",char:"🌹"},
+      {level:13,title:"Velvet Whisker",minXP:220000,color:"#9d174d",bg:"#4a0020",char:"🎭"},
+      {level:14,title:"Silk Paws",minXP:295000,color:"#fbcfe8",bg:"#fff0f5",char:"🐾"},
+      {level:15,title:"Golden Bow",minXP:390000,color:"#f59e0b",bg:"#fff7ed",char:"🌟"},
+      {level:16,title:"Crystal Kitty",minXP:510000,color:"#67e8f9",bg:"#ecfeff",char:"💎"},
+      {level:17,title:"Sapphire Saver",minXP:660000,color:"#3b82f6",bg:"#eff6ff",char:"💙"},
+      {level:18,title:"Ruby Ruler",minXP:845000,color:"#ef4444",bg:"#fef2f2",char:"❤️"},
+      {level:19,title:"Emerald Elite",minXP:1075000,color:"#10b981",bg:"#f0fdf4",char:"💚"},
+      {level:20,title:"Platinum Princess",minXP:1365000,color:"#e2e8f0",bg:"#f8fafc",char:"⬜"},
+      {level:21,title:"Moonlit Meow",minXP:1730000,color:"#818cf8",bg:"#eef2ff",char:"🌙"},
+      {level:22,title:"Starlight Saver",minXP:2190000,color:"#fbbf24",bg:"#fffbeb",char:"✨"},
+      {level:23,title:"Celestial Kitty",minXP:2770000,color:"#06b6d4",bg:"#ecfeff",char:"🌠"},
+      {level:24,title:"Aurora Champion",minXP:3500000,color:"#f97316",bg:"#fff7ed",char:"🌅"},
+      {level:25,title:"Cosmic Bow",minXP:4420000,color:"#ff69b4",bg:"#fff0f5",char:"🎀"},
+      {level:26,title:"Galactic Kitten",minXP:5590000,color:"#8b5cf6",bg:"#faf5ff",char:"🌌"},
+      {level:27,title:"Supreme Bow",minXP:7070000,color:"#ff1493",bg:"#fff0f5",char:"🎀"},
+      {level:28,title:"Legendary Queen",minXP:8940000,color:"#fbbf24",bg:"#fffbeb",char:"👑"},
+      {level:29,title:"Godlike Guardian",minXP:11300000,color:"#f5c842",bg:"#fffbeb",char:"⚡"},
+      {level:30,title:"The One True Kitty",minXP:14300000,color:"#fbbf24",bg:"#fffbeb",char:"🌟"},
     ],
     titleGrad:"linear-gradient(135deg,#ff69b4,#e91e8c,#ff1493)", titleShadow:"drop-shadow(0 2px 8px #ff69b460)",
     tagline:"🎀 Cute budgeting for a cute person 🎀", taglineColor:"#d4829a",
@@ -154,6 +204,16 @@ const QUESTS = [
     const lw=e.filter(x=>new Date(x.date)>=twoWeeksAgo&&new Date(x.date)<weekAgo&&x.category!=="Savings").reduce((s,x)=>s+x.amount,0);
     return lw>0&&tw<lw;
   }},
+  {id:"log100",title:"Century Club",desc:"Log 100 total purchases",xp:500,check:(e)=>e.length>=100},
+  {id:"log250",title:"Quarter Millennium",desc:"Log 250 total purchases",xp:1000,check:(e)=>e.length>=250},
+  {id:"log500",title:"500 Club",desc:"Log 500 total purchases",xp:2000,check:(e)=>e.length>=500},
+  {id:"savings_50",title:"Savings Legend",desc:"Log 50 Savings entries",xp:750,check:(e)=>e.filter(x=>x.category==="Savings").length>=50},
+  {id:"alldays_60",title:"Two Month Tracker",desc:"Log on 60 different days",xp:600,check:(e)=>new Set(e.map(x=>x.date)).size>=60},
+  {id:"alldays_100",title:"100 Day Legend",desc:"Log on 100 different days",xp:1000,check:(e)=>new Set(e.map(x=>x.date)).size>=100},
+  {id:"under5_20",title:"Extreme Saver",desc:"Log 20 purchases under $5 each",xp:400,check:(e)=>e.filter(x=>x.amount<5).length>=20},
+  {id:"multimonth",title:"Quarter Year",desc:"Log across 3 different months",xp:500,check:(e)=>new Set(e.map(x=>x.date.slice(0,7))).size>=3},
+  {id:"sixmonths",title:"Half Year Hero",desc:"Log across 6 different months",xp:1000,check:(e)=>new Set(e.map(x=>x.date.slice(0,7))).size>=6},
+  {id:"fullyear",title:"Year of Mastery",desc:"Log across 12 different months",xp:2500,check:(e)=>new Set(e.map(x=>x.date.slice(0,7))).size>=12},
 ];
 
 // ─── BADGES ────────────────────────────────────────────────────────────────────
@@ -189,7 +249,16 @@ const BADGES = [
     const lw=e.filter(x=>new Date(x.date)>=twoWeeksAgo&&new Date(x.date)<weekAgo&&x.category!=="Savings").reduce((s,x)=>s+x.amount,0);
     return lw>0&&tw<lw;
   }},
-  {id:"saver_epic", icon:"💰",name:"Money Magnet",       desc:"Log 25 Savings entries",     rarity:"epic",    check:(e)=>e.filter(x=>x.category==="Savings").length>=25},
+  {id:"saver_epic",icon:"💰",name:"Money Magnet",desc:"Log 25 Savings entries",rarity:"epic",check:(e)=>e.filter(x=>x.category==="Savings").length>=25},
+  {id:"log_250",icon:"🏅",name:"250 Strong",desc:"Log 250 purchases",rarity:"epic",check:(e)=>e.length>=250},
+  {id:"log_500",icon:"🥇",name:"500 Legend",desc:"Log 500 purchases",rarity:"epic",check:(e)=>e.length>=500},
+  {id:"xp_15000",icon:"🔱",name:"Power Surge",desc:"Reach 15,000 XP",rarity:"epic",checkXP:(xp)=>xp>=15000},
+  {id:"xp_30000",icon:"👁️",name:"All Seeing",desc:"Reach 30,000 XP",rarity:"epic",checkXP:(xp)=>xp>=30000},
+  {id:"xp_100000",icon:"🌌",name:"Galaxy Brain",desc:"Reach 100,000 XP",rarity:"epic",checkXP:(xp)=>xp>=100000},
+  {id:"streak_60",icon:"☄️",name:"Comet",desc:"60 day logging streak",rarity:"epic",checkStreak:(s)=>s>=60},
+  {id:"streak_100",icon:"🌞",name:"Unstoppable Force",desc:"100 day logging streak",rarity:"epic",checkStreak:(s)=>s>=100},
+  {id:"saver_100",icon:"🏛️",name:"Vault Master",desc:"Log 100 Savings entries",rarity:"epic",check:(e)=>e.filter(x=>x.category==="Savings").length>=100},
+  {id:"year_badge",icon:"🎖️",name:"Year of Excellence",desc:"Log across 12 months",rarity:"epic",check:(e)=>new Set(e.map(x=>x.date.slice(0,7))).size>=12},
 ];
 
 // ─── HELPERS ───────────────────────────────────────────────────────────────────
@@ -277,7 +346,7 @@ function ProfilePicker({ onSelect, profileData }) {
   const handleCardTap = (id) => {
     const data = profileData[id];
     if (data?.pin) setPinScreen({id, isSettingPin:false, savedPin:data.pin});
-    else setPinScreen({id, isSettingPin:true, savedPin:null});
+    else onSelect(id, null);
   };
 
   const handlePinSuccess = (newPin) => { onSelect(pinScreen.id, newPin); setPinScreen(null); };
@@ -311,7 +380,7 @@ function ProfilePicker({ onSelect, profileData }) {
               )}
               {streak>0 && <div style={{fontSize:12,color:"#f97316",fontWeight:800,marginBottom:8}}>🔥 {streak} day streak</div>}
               <div style={{background:p.btnBg,borderRadius:12,padding:"9px",color:"#fff",fontWeight:800,fontSize:13,fontFamily:"'Fredoka One',cursive"}}>
-                {data?.pin ? "🔒 Enter PIN" : "🔓 Set PIN"}
+                {data?.pin ? "🔒 Locked" : "▶ Play"}
               </div>
             </button>
           );
@@ -405,6 +474,10 @@ export default function BudgetQuest() {
   const [income, setIncome]         = useState([]);
   const [incomeForm, setIncomeForm] = useState({amount:"", note:"", date:new Date().toISOString().split("T")[0]});
   const [incomeDeleteConfirm, setIncomeDeleteConfirm] = useState(null);
+  const [pinSetStep, setPinSetStep] = useState("idle");
+  const [newPinEntry, setNewPinEntry] = useState("");
+  const [newPinConfirm, setNewPinConfirm] = useState("");
+  const [pinError, setPinError] = useState("");
 
   // Load both profiles on mount for picker display
   useEffect(()=>{
@@ -458,13 +531,12 @@ export default function BudgetQuest() {
     saveData(newEntries,newXP,completedQuests,unlockedBadges);
   };
 
-  const addIncome = () => {
-    if (!incomeForm.amount || isNaN(parseFloat(incomeForm.amount))) return;
-    const entry = {...incomeForm, amount:parseFloat(incomeForm.amount), id:Date.now()};
-    const newIncome = [entry, ...income];
+  const addIncome=()=>{
+    if(!incomeForm.amount||isNaN(parseFloat(incomeForm.amount)))return;
+    const entry={...incomeForm,amount:parseFloat(incomeForm.amount),id:Date.now()};
+    const newIncome=[entry,...income];
     setIncome(newIncome);
-    const gained = 20;
-    const newXP = xp + gained;
+    const gained=20,newXP=xp+gained;
     setXP(newXP);
     setXPAnim(`+${gained} XP ${t.xpPopSuffix}`);
     setTimeout(()=>setXPAnim(null),1600);
@@ -473,14 +545,12 @@ export default function BudgetQuest() {
     sb.save(profile,{...(profileData[profile]||{}),entries,xp:newXP,quests:completedQuests,badges:unlockedBadges,streak,last_log_date:lastLogDate,pin:profileData[profile]?.pin||null,income:newIncome});
     setIncomeForm(f=>({...f,amount:"",note:""}));
   };
-
-  const deleteIncome = (id) => {
-    const newIncome = income.filter(e=>e.id!==id);
+  const deleteIncome=(id)=>{
+    const newIncome=income.filter(e=>e.id!==id);
     setIncome(newIncome);
     setIncomeDeleteConfirm(null);
     sb.save(profile,{...(profileData[profile]||{}),entries,xp,quests:completedQuests,badges:unlockedBadges,streak,last_log_date:lastLogDate,pin:profileData[profile]?.pin||null,income:newIncome});
   };
-
   if (!profile) return <ProfilePicker profileData={profileData} onSelect={(p,newPin)=>{
     if (newPin) {
       const updated={...profileData,[p]:{...(profileData[p]||{}),pin:newPin}};
@@ -592,7 +662,7 @@ export default function BudgetQuest() {
     return rarityOrder.indexOf(a.rarity)-rarityOrder.indexOf(b.rarity);
   });
 
-  const TABS=[["log",t.logTabIcon,"Log"],["income","💵","Income"],["history","📜","History"],["quests","🏆","Quests"],["badges","🎖️","Badges"],["stats","📊","Stats"]];
+  const TABS=[["log",t.logTabIcon,"Log"],["income","💵","Income"],["history","📜","History"],["quests","🏆","Quests"],["badges","🎖️","Badges"],["stats","📊","Stats"],["settings","⚙️","Settings"]];
   const inp={width:"100%",background:t.inputBg,border:`2px solid ${t.inputBorder}`,borderRadius:12,padding:"11px 14px",color:t.bodyText,fontSize:15,boxSizing:"border-box",outline:"none",fontFamily:"inherit"};
   const lbl={fontSize:11,fontWeight:800,color:t.primary,marginBottom:6,display:"block",textTransform:"uppercase",letterSpacing:1};
   const card={background:t.cardBg,borderRadius:22,padding:20,border:`2px solid ${t.cardBorder}`,boxShadow:"0 4px 24px #00000015"};
@@ -615,7 +685,7 @@ export default function BudgetQuest() {
         <div style={{fontSize:13,fontWeight:800,color:t.secondary,letterSpacing:3,textTransform:"uppercase",marginBottom:4}}>{t.name}'s</div>
         <h1 style={{fontFamily:"'Fredoka One',cursive",fontSize:40,margin:0,lineHeight:1,letterSpacing:2,background:t.titleGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text",filter:t.titleShadow}}>Budget Quest</h1>
         <div style={{fontSize:13,marginTop:8,fontWeight:600,color:t.taglineColor}}>{t.tagline}</div>
-        <button onClick={()=>setProfile(null)} style={{marginTop:10,background:"transparent",border:`1px solid ${t.cardBorder}`,borderRadius:99,padding:"5px 14px",color:t.subColor,fontSize:12,cursor:"pointer",fontWeight:600,fontFamily:"inherit"}}>Switch profile ↩</button>
+
       </div>
 
       {/* XP Bar */}
@@ -697,7 +767,7 @@ export default function BudgetQuest() {
         <div style={card}>
           <div style={{fontFamily:"'Fredoka One',cursive",fontSize:20,color:t.headingColor,marginBottom:16}}>{entries.length} purchases logged</div>
           {entries.length===0&&<div style={{textAlign:"center",padding:"32px 0",color:t.histEmptyColor}}><div style={{fontSize:40,marginBottom:10}}>{t.emptyIcon}</div><div style={{fontWeight:700}}>{t.emptyText}</div><div style={{fontSize:13,marginTop:6}}>{t.emptySub}</div></div>}
-          {entries.slice(0,100).map(e=>(
+          {[...entries].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,100).map(e=>(
             <div key={e.id} style={{padding:"12px 0",borderBottom:`1px solid ${t.histDivider}`}}>
               <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
                 <div style={{display:"flex",alignItems:"center",gap:10,flex:1}}>
@@ -771,93 +841,6 @@ export default function BudgetQuest() {
         </div>
       )}
 
-      {/* INCOME */}
-      {tab==="income"&&(
-        <div>
-          {/* Summary card */}
-          {(()=>{
-            const totalIncome=income.reduce((s,e)=>s+e.amount,0);
-            const totalSpending=entries.filter(e=>e.category!=="Savings").reduce((s,e)=>s+e.amount,0);
-            const balance=totalIncome-totalSpending;
-            return (
-              <div style={{...card,padding:"18px",marginBottom:16}}>
-                <div style={{fontFamily:"'Fredoka One',cursive",fontSize:18,color:t.headingColor,marginBottom:14}}>💰 Financial Summary</div>
-                <div style={{display:"flex",gap:10,marginBottom:10}}>
-                  <div style={{flex:1,background:t.inputBg,borderRadius:14,padding:"12px",textAlign:"center",border:`1px solid #16a34a40`}}>
-                    <div style={{fontSize:10,fontWeight:800,color:"#16a34a",letterSpacing:1,textTransform:"uppercase",marginBottom:4}}>Income</div>
-                    <div style={{fontFamily:"'Fredoka One',cursive",fontSize:20,color:"#16a34a"}}>${totalIncome.toFixed(2)}</div>
-                    <div style={{fontSize:10,color:t.subColor,marginTop:2}}>{income.length} paychecks</div>
-                  </div>
-                  <div style={{flex:1,background:t.inputBg,borderRadius:14,padding:"12px",textAlign:"center",border:`1px solid ${t.primary}40`}}>
-                    <div style={{fontSize:10,fontWeight:800,color:t.primary,letterSpacing:1,textTransform:"uppercase",marginBottom:4}}>Spending</div>
-                    <div style={{fontFamily:"'Fredoka One',cursive",fontSize:20,color:t.primary}}>${totalSpending.toFixed(2)}</div>
-                    <div style={{fontSize:10,color:t.subColor,marginTop:2}}>{entries.filter(e=>e.category!=="Savings").length} purchases</div>
-                  </div>
-                </div>
-                <div style={{background:balance>=0?"#16a34a15":"#ef444415",borderRadius:14,padding:"14px",textAlign:"center",border:`2px solid ${balance>=0?"#16a34a40":"#ef444440"}`}}>
-                  <div style={{fontSize:11,fontWeight:800,color:balance>=0?"#16a34a":"#ef4444",letterSpacing:1,textTransform:"uppercase",marginBottom:4}}>Balance</div>
-                  <div style={{fontFamily:"'Fredoka One',cursive",fontSize:32,color:balance>=0?"#16a34a":"#ef4444"}}>{balance>=0?"":"-"}${Math.abs(balance).toFixed(2)}</div>
-                  <div style={{fontSize:11,color:t.subColor,marginTop:4,fontWeight:600}}>{balance>=0?"✅ You're in the green!":"⚠️ Spending exceeds income"}</div>
-                </div>
-              </div>
-            );
-          })()}
-
-          {/* Log a paycheck */}
-          <div style={{...card,marginBottom:16}}>
-            <div style={{fontFamily:"'Fredoka One',cursive",fontSize:18,color:t.headingColor,marginBottom:14}}>💵 Log a Paycheck</div>
-            <div style={{display:"flex",gap:10,marginBottom:12,minWidth:0}}>
-              <div style={{flex:"0 0 42%",minWidth:0}}>
-                <label style={{fontSize:11,fontWeight:800,color:t.primary,marginBottom:6,display:"block",textTransform:"uppercase",letterSpacing:1}}>Amount ($)</label>
-                <input type="number" placeholder="0.00" value={incomeForm.amount} onChange={e=>setIncomeForm(f=>({...f,amount:e.target.value}))} style={{width:"100%",background:t.inputBg,border:`2px solid ${t.inputBorder}`,borderRadius:12,padding:"11px 14px",color:t.bodyText,fontSize:15,boxSizing:"border-box",outline:"none",fontFamily:"inherit"}}/>
-              </div>
-              <div style={{flex:"0 0 52%",minWidth:0}}>
-                <label style={{fontSize:11,fontWeight:800,color:t.primary,marginBottom:6,display:"block",textTransform:"uppercase",letterSpacing:1}}>Date</label>
-                <input type="date" value={incomeForm.date} onChange={e=>setIncomeForm(f=>({...f,date:e.target.value}))} style={{width:"100%",background:t.inputBg,border:`2px solid ${t.inputBorder}`,borderRadius:12,padding:"11px 8px",color:t.bodyText,fontSize:12,boxSizing:"border-box",outline:"none",fontFamily:"inherit",WebkitAppearance:"none"}}/>
-              </div>
-            </div>
-            <div style={{marginBottom:12}}>
-              <label style={{fontSize:11,fontWeight:800,color:t.primary,marginBottom:6,display:"block",textTransform:"uppercase",letterSpacing:1}}>Note (optional)</label>
-              <input type="text" placeholder="e.g. Weekly paycheck, freelance job..." value={incomeForm.note} onChange={e=>setIncomeForm(f=>({...f,note:e.target.value}))} style={{width:"100%",background:t.inputBg,border:`2px solid ${t.inputBorder}`,borderRadius:12,padding:"11px 14px",color:t.bodyText,fontSize:15,boxSizing:"border-box",outline:"none",fontFamily:"inherit"}}/>
-            </div>
-            <button onClick={addIncome} style={{width:"100%",padding:"13px",background:t.btnBg,border:`2px solid ${t.btnBorder}`,borderRadius:16,color:"#fff",fontWeight:900,fontSize:16,cursor:"pointer",fontFamily:"'Fredoka One',cursive",letterSpacing:1,boxShadow:t.btnShadow}}>
-              💵 LOG PAYCHECK +20 XP
-            </button>
-          </div>
-
-          {/* Paycheck history */}
-          {income.length>0&&(
-            <div style={card}>
-              <div style={{fontFamily:"'Fredoka One',cursive",fontSize:18,color:t.headingColor,marginBottom:14}}>{income.length} Paychecks Logged</div>
-              {income.map(e=>(
-                <div key={e.id} style={{padding:"12px 0",borderBottom:`1px solid ${t.histDivider}`}}>
-                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                    <div style={{display:"flex",alignItems:"center",gap:10,flex:1}}>
-                      <div style={{width:36,height:36,borderRadius:10,background:"#16a34a15",border:"2px solid #16a34a50",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>💵</div>
-                      <div style={{flex:1,minWidth:0}}>
-                        <div style={{fontWeight:700,fontSize:14,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{e.note||"Paycheck"}</div>
-                        <div style={{fontSize:12,color:t.histCatText}}>{e.date}</div>
-                      </div>
-                    </div>
-                    <div style={{display:"flex",alignItems:"center",gap:8,flexShrink:0}}>
-                      <div style={{color:"#16a34a",fontWeight:900,fontFamily:"'Fredoka One',cursive",fontSize:16}}>+${e.amount.toFixed(2)}</div>
-                      {incomeDeleteConfirm===e.id?(
-                        <div style={{display:"flex",gap:4}}>
-                          <button onClick={()=>deleteIncome(e.id)} style={{background:"#ef4444",border:"none",borderRadius:8,color:"#fff",fontSize:11,fontWeight:800,padding:"4px 8px",cursor:"pointer"}}>Delete</button>
-                          <button onClick={()=>setIncomeDeleteConfirm(null)} style={{background:t.cardBorder,border:"none",borderRadius:8,color:t.bodyText,fontSize:11,fontWeight:800,padding:"4px 8px",cursor:"pointer"}}>Cancel</button>
-                        </div>
-                      ):(
-                        <button onClick={()=>setIncomeDeleteConfirm(e.id)} style={{background:"transparent",border:"1px solid #ef444460",borderRadius:8,color:"#ef4444",fontSize:14,padding:"4px 8px",cursor:"pointer",lineHeight:1}}>🗑️</button>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
       {/* STATS */}
       {tab==="stats"&&(
         <div>
@@ -923,6 +906,164 @@ export default function BudgetQuest() {
               })}
             </div>
           )}
+        </div>
+      )}
+      {/* INCOME */}
+      {tab==="income"&&(
+        <div>
+          {(()=>{
+            const totalIncome=income.reduce((s,e)=>s+e.amount,0);
+            const totalSpending=entries.filter(e=>e.category!=="Savings").reduce((s,e)=>s+e.amount,0);
+            const balance=totalIncome-totalSpending;
+            return (
+              <div style={{...card,padding:"18px",marginBottom:16}}>
+                <div style={{fontFamily:"'Fredoka One',cursive",fontSize:18,color:t.headingColor,marginBottom:14}}>💰 Financial Summary</div>
+                <div style={{display:"flex",gap:10,marginBottom:10}}>
+                  <div style={{flex:1,background:t.inputBg,borderRadius:14,padding:"12px",textAlign:"center",border:"1px solid #16a34a40"}}>
+                    <div style={{fontSize:10,fontWeight:800,color:"#16a34a",letterSpacing:1,textTransform:"uppercase",marginBottom:4}}>Income</div>
+                    <div style={{fontFamily:"'Fredoka One',cursive",fontSize:20,color:"#16a34a"}}>${totalIncome.toFixed(2)}</div>
+                    <div style={{fontSize:10,color:t.subColor,marginTop:2}}>{income.length} paychecks</div>
+                  </div>
+                  <div style={{flex:1,background:t.inputBg,borderRadius:14,padding:"12px",textAlign:"center",border:`1px solid ${t.primary}40`}}>
+                    <div style={{fontSize:10,fontWeight:800,color:t.primary,letterSpacing:1,textTransform:"uppercase",marginBottom:4}}>Spending</div>
+                    <div style={{fontFamily:"'Fredoka One',cursive",fontSize:20,color:t.primary}}>${totalSpending.toFixed(2)}</div>
+                    <div style={{fontSize:10,color:t.subColor,marginTop:2}}>{entries.filter(e=>e.category!=="Savings").length} purchases</div>
+                  </div>
+                </div>
+                <div style={{background:balance>=0?"#16a34a15":"#ef444415",borderRadius:14,padding:"14px",textAlign:"center",border:`2px solid ${balance>=0?"#16a34a40":"#ef444440"}`}}>
+                  <div style={{fontSize:11,fontWeight:800,color:balance>=0?"#16a34a":"#ef4444",letterSpacing:1,textTransform:"uppercase",marginBottom:4}}>Balance</div>
+                  <div style={{fontFamily:"'Fredoka One',cursive",fontSize:32,color:balance>=0?"#16a34a":"#ef4444"}}>{balance>=0?"":"-"}${Math.abs(balance).toFixed(2)}</div>
+                  <div style={{fontSize:11,color:t.subColor,marginTop:4,fontWeight:600}}>{balance>=0?"✅ You're in the green!":"⚠️ Spending exceeds income"}</div>
+                </div>
+              </div>
+            );
+          })()}
+          <div style={{...card,marginBottom:16}}>
+            <div style={{fontFamily:"'Fredoka One',cursive",fontSize:18,color:t.headingColor,marginBottom:14}}>💵 Log a Paycheck</div>
+            <div style={{display:"flex",gap:10,marginBottom:12,minWidth:0}}>
+              <div style={{flex:"0 0 42%",minWidth:0}}>
+                <label style={{fontSize:11,fontWeight:800,color:t.primary,marginBottom:6,display:"block",textTransform:"uppercase",letterSpacing:1}}>Amount ($)</label>
+                <input type="number" placeholder="0.00" value={incomeForm.amount} onChange={e=>setIncomeForm(f=>({...f,amount:e.target.value}))} style={{width:"100%",background:t.inputBg,border:`2px solid ${t.inputBorder}`,borderRadius:12,padding:"11px 14px",color:t.bodyText,fontSize:15,boxSizing:"border-box",outline:"none",fontFamily:"inherit"}}/>
+              </div>
+              <div style={{flex:"0 0 52%",minWidth:0}}>
+                <label style={{fontSize:11,fontWeight:800,color:t.primary,marginBottom:6,display:"block",textTransform:"uppercase",letterSpacing:1}}>Date</label>
+                <input type="date" value={incomeForm.date} onChange={e=>setIncomeForm(f=>({...f,date:e.target.value}))} style={{width:"100%",background:t.inputBg,border:`2px solid ${t.inputBorder}`,borderRadius:12,padding:"11px 8px",color:t.bodyText,fontSize:12,boxSizing:"border-box",outline:"none",fontFamily:"inherit",WebkitAppearance:"none"}}/>
+              </div>
+            </div>
+            <div style={{marginBottom:12}}>
+              <label style={{fontSize:11,fontWeight:800,color:t.primary,marginBottom:6,display:"block",textTransform:"uppercase",letterSpacing:1}}>Note (optional)</label>
+              <input type="text" placeholder="e.g. Weekly paycheck, freelance..." value={incomeForm.note} onChange={e=>setIncomeForm(f=>({...f,note:e.target.value}))} style={{width:"100%",background:t.inputBg,border:`2px solid ${t.inputBorder}`,borderRadius:12,padding:"11px 14px",color:t.bodyText,fontSize:15,boxSizing:"border-box",outline:"none",fontFamily:"inherit"}}/>
+            </div>
+            <button onClick={addIncome} style={{width:"100%",padding:"13px",background:t.btnBg,border:`2px solid ${t.btnBorder}`,borderRadius:16,color:"#fff",fontWeight:900,fontSize:16,cursor:"pointer",fontFamily:"'Fredoka One',cursive",letterSpacing:1,boxShadow:t.btnShadow}}>💵 LOG PAYCHECK +20 XP</button>
+          </div>
+          {income.length>0&&(
+            <div style={card}>
+              <div style={{fontFamily:"'Fredoka One',cursive",fontSize:18,color:t.headingColor,marginBottom:14}}>{income.length} Paychecks Logged</div>
+              {[...income].sort((a,b)=>b.date.localeCompare(a.date)).map(e=>(
+                <div key={e.id} style={{padding:"12px 0",borderBottom:`1px solid ${t.histDivider}`}}>
+                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                    <div style={{display:"flex",alignItems:"center",gap:10,flex:1}}>
+                      <div style={{width:36,height:36,borderRadius:10,background:"#16a34a15",border:"2px solid #16a34a50",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>💵</div>
+                      <div style={{flex:1,minWidth:0}}>
+                        <div style={{fontWeight:700,fontSize:14,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{e.note||"Paycheck"}</div>
+                        <div style={{fontSize:12,color:t.histCatText}}>{e.date}</div>
+                      </div>
+                    </div>
+                    <div style={{display:"flex",alignItems:"center",gap:8,flexShrink:0}}>
+                      <div style={{color:"#16a34a",fontWeight:900,fontFamily:"'Fredoka One',cursive",fontSize:16}}>+${e.amount.toFixed(2)}</div>
+                      {incomeDeleteConfirm===e.id?(
+                        <div style={{display:"flex",gap:4}}>
+                          <button onClick={()=>deleteIncome(e.id)} style={{background:"#ef4444",border:"none",borderRadius:8,color:"#fff",fontSize:11,fontWeight:800,padding:"4px 8px",cursor:"pointer"}}>Delete</button>
+                          <button onClick={()=>setIncomeDeleteConfirm(null)} style={{background:t.cardBorder,border:"none",borderRadius:8,color:t.bodyText,fontSize:11,fontWeight:800,padding:"4px 8px",cursor:"pointer"}}>Cancel</button>
+                        </div>
+                      ):(
+                        <button onClick={()=>setIncomeDeleteConfirm(e.id)} style={{background:"transparent",border:"1px solid #ef444460",borderRadius:8,color:"#ef4444",fontSize:14,padding:"4px 8px",cursor:"pointer",lineHeight:1}}>🗑️</button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* SETTINGS */}
+      {tab==="settings"&&(
+        <div style={card}>
+          <div style={{fontFamily:"'Fredoka One',cursive",fontSize:20,color:t.headingColor,marginBottom:20}}>⚙️ Settings</div>
+          <div style={{marginBottom:24}}>
+            <div style={{fontFamily:"'Fredoka One',cursive",fontSize:16,color:t.headingColor,marginBottom:4}}>🔒 Profile PIN</div>
+            <div style={{fontSize:12,color:t.subColor,marginBottom:14,fontWeight:600}}>
+              {profileData[profile]?.pin?"Your profile is PIN protected.":"No PIN set. Add one to lock your profile."}
+            </div>
+            {pinSetStep==="idle"&&(
+              <div style={{display:"flex",gap:10}}>
+                <button onClick={()=>{setPinSetStep("setting");setNewPinEntry("");setNewPinConfirm("");setPinError("");}}
+                  style={{flex:1,padding:"12px",background:t.btnBg,border:"none",borderRadius:14,color:"#fff",fontWeight:800,fontSize:14,cursor:"pointer",fontFamily:"'Fredoka One',cursive",boxShadow:t.btnShadow}}>
+                  {profileData[profile]?.pin?"🔄 Change PIN":"🔒 Set PIN"}
+                </button>
+                {profileData[profile]?.pin&&(
+                  <button onClick={()=>{
+                    const updated={...profileData,[profile]:{...(profileData[profile]||{}),pin:null}};
+                    setProfileData(updated);
+                    sb.save(profile,{...(profileData[profile]||{}),pin:null});
+                    showToast("🔓 PIN removed!");
+                  }} style={{flex:1,padding:"12px",background:"transparent",border:"2px solid #ef444460",borderRadius:14,color:"#ef4444",fontWeight:800,fontSize:14,cursor:"pointer",fontFamily:"'Fredoka One',cursive"}}>
+                    🗑️ Remove PIN
+                  </button>
+                )}
+              </div>
+            )}
+            {(pinSetStep==="setting"||pinSetStep==="confirm")&&(
+              <div>
+                <div style={{fontSize:13,color:t.subColor,marginBottom:12,fontWeight:600}}>
+                  {pinSetStep==="setting"?"Enter your new 4-digit PIN:":"Confirm your new PIN:"}
+                </div>
+                <div style={{display:"flex",gap:12,justifyContent:"center",marginBottom:8}}>
+                  {[0,1,2,3].map(i=>{
+                    const val=pinSetStep==="setting"?newPinEntry:newPinConfirm;
+                    return <div key={i} style={{width:18,height:18,borderRadius:"50%",background:i<val.length?t.primary:`${t.primary}30`,border:`2px solid ${t.primary}60`,transition:"background 0.15s"}}/>;
+                  })}
+                </div>
+                {pinError&&<div style={{color:"#ef4444",fontSize:12,fontWeight:700,textAlign:"center",marginBottom:8}}>{pinError}</div>}
+                <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:10,maxWidth:220,margin:"0 auto 12px"}}>
+                  {[1,2,3,4,5,6,7,8,9,"",0,"⌫"].map((d,i)=>(
+                    <button key={i} onClick={()=>{
+                      if(d==="")return;
+                      setPinError("");
+                      const isConfirm=pinSetStep==="confirm";
+                      const cur=isConfirm?newPinConfirm:newPinEntry;
+                      const set=isConfirm?setNewPinConfirm:setNewPinEntry;
+                      if(d==="⌫"){set(p=>p.slice(0,-1));return;}
+                      if(cur.length<4){
+                        const next=cur+String(d);
+                        set(next);
+                        if(next.length===4&&!isConfirm){setPinSetStep("confirm");}
+                        if(next.length===4&&isConfirm){
+                          if(next===newPinEntry){
+                            const updated={...profileData,[profile]:{...(profileData[profile]||{}),pin:next}};
+                            setProfileData(updated);
+                            sb.save(profile,{...(profileData[profile]||{}),pin:next});
+                            showToast("🔒 PIN set!");
+                            setPinSetStep("idle");setNewPinEntry("");setNewPinConfirm("");
+                          }else{
+                            setPinError("PINs don't match");setNewPinConfirm("");setPinSetStep("setting");setNewPinEntry("");
+                          }
+                        }
+                      }
+                    }} style={{height:52,borderRadius:14,border:`2px solid ${t.cardBorder}`,background:t.inputBg,color:t.headingColor,fontSize:d==="⌫"?18:20,fontWeight:800,cursor:d===""?"default":"pointer",fontFamily:"'Fredoka One',cursive",opacity:d===""?0:1}}>
+                      {d}
+                    </button>
+                  ))}
+                </div>
+                <button onClick={()=>{setPinSetStep("idle");setNewPinEntry("");setNewPinConfirm("");setPinError("");}} style={{width:"100%",padding:"10px",background:"transparent",border:`1px solid ${t.cardBorder}`,borderRadius:12,color:t.subColor,fontWeight:700,fontSize:13,cursor:"pointer",fontFamily:"inherit"}}>Cancel</button>
+              </div>
+            )}
+          </div>
+          <div style={{borderTop:`1px solid ${t.cardBorder}`,paddingTop:20}}>
+            <button onClick={()=>setProfile(null)} style={{width:"100%",padding:"12px",background:"transparent",border:`2px solid ${t.cardBorder}`,borderRadius:14,color:t.subColor,fontWeight:700,fontSize:14,cursor:"pointer",fontFamily:"inherit"}}>↩ Switch Profile</button>
+          </div>
         </div>
       )}
     </div>
