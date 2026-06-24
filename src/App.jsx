@@ -165,6 +165,11 @@ const BADGES = [
   {id:"xp_1500",    icon:"🌟",name:"Shining Light",      desc:"Reach 1,500 XP",            rarity:"uncommon",checkXP:(xp)=>xp>=1500},
   {id:"xp_3500",    icon:"💫",name:"Blazing Trail",      desc:"Reach 3,500 XP",            rarity:"rare",    checkXP:(xp)=>xp>=3500},
   {id:"xp_7000",    icon:"🌠",name:"Legend",             desc:"Reach 7,000 XP",            rarity:"epic",    checkXP:(xp)=>xp>=7000},
+  // Streak badges
+  {id:"streak_3",   icon:"🔥",name:"On Fire",            desc:"3 day logging streak",       rarity:"common",  checkStreak:(s)=>s>=3},
+  {id:"streak_7",   icon:"🌋",name:"Week Blaze",         desc:"7 day logging streak",       rarity:"uncommon",checkStreak:(s)=>s>=7},
+  {id:"streak_14",  icon:"⚡",name:"Fortnight Fury",     desc:"14 day logging streak",      rarity:"rare",    checkStreak:(s)=>s>=14},
+  {id:"streak_30",  icon:"💎",name:"Unstoppable",        desc:"30 day logging streak",      rarity:"epic",    checkStreak:(s)=>s>=30},
 ];
 
 // ─── HELPERS ───────────────────────────────────────────────────────────────────
@@ -278,6 +283,8 @@ export default function BudgetQuest() {
   const [loading, setLoading]     = useState(false);
   const [selectedCat, setSelectedCat] = useState(null);
   const [deleteConfirm, setDeleteConfirm] = useState(null);
+  const [streak, setStreak] = useState(0);
+  const [lastLogDate, setLastLogDate] = useState(null);
 
   // Load data when profile selected — always wipe state first so previous profile never bleeds through
   useEffect(() => {
@@ -290,16 +297,18 @@ export default function BudgetQuest() {
         setXP(data.xp || 0);
         setCompletedQuests(data.quests || []);
         setUnlockedBadges(data.badges || []);
+        setStreak(data.streak || 0);
+        setLastLogDate(data.last_log_date || null);
       }
       setLoading(false);
     }).catch(()=>setLoading(false));
   }, [profile]);
 
   // Debounced save whenever state changes
-  const saveData = useCallback(async (newEntries, newXP, newQuests, newBadges) => {
+  const saveData = useCallback(async (newEntries, newXP, newQuests, newBadges, newStreakVal=streak, newLastLogDate=lastLogDate) => {
     setSaveStatus("saving");
     try {
-      await sb.save(profile, { entries: newEntries, xp: newXP, quests: newQuests, badges: newBadges });
+      await sb.save(profile, { entries: newEntries, xp: newXP, quests: newQuests, badges: newBadges, streak: newStreakVal, last_log_date: newLastLogDate });
       setSaveStatus("saved");
       setTimeout(()=>setSaveStatus("idle"), 2000);
     } catch(e) {
@@ -350,6 +359,33 @@ export default function BudgetQuest() {
     if (form.category) gained+=5;
     const today=new Date().toISOString().split("T")[0];
     if (form.date===today) gained+=10;
+
+    // Streak calculation
+    const yesterday = new Date(Date.now()-86400000).toISOString().split("T")[0];
+    let newStreak = streak;
+    let newLastLogDate = lastLogDate;
+    const alreadyLoggedToday = entries.some(e=>e.date===today);
+    if (!alreadyLoggedToday) {
+      if (lastLogDate === yesterday) {
+        newStreak = streak + 1;
+      } else if (lastLogDate === today) {
+        newStreak = streak;
+      } else {
+        newStreak = 1;
+      }
+      newLastLogDate = today;
+    }
+
+    // Streak milestone XP bonuses
+    const STREAK_MILESTONES = {3:100, 7:250, 14:500, 30:1000};
+    let streakBonus = 0;
+    if (newStreak !== streak && STREAK_MILESTONES[newStreak]) {
+      streakBonus = STREAK_MILESTONES[newStreak];
+      setTimeout(()=>showToast(`🔥 ${newStreak} Day Streak! +${streakBonus} bonus XP!`), 600);
+    } else if (newStreak !== streak && newStreak > 1) {
+      setTimeout(()=>showToast(`🔥 ${newStreak} day streak! Keep it up!`), 600);
+    }
+
     const newXP=xp+gained;
 
     setXPAnim(`+${gained} XP ${t.xpPopSuffix}`);
@@ -367,11 +403,11 @@ export default function BudgetQuest() {
         questBonus+=q.xp; newQuests.push(q.id);
       }
     });
-    const finalXP=newXP+questBonus;
+    const finalXP=newXP+questBonus+streakBonus;
 
     const newBadgeIds=BADGES.filter(b=>{
       if (unlockedBadges.includes(b.id)) return false;
-      return (b.check&&b.check(newEntries))||(b.checkXP&&b.checkXP(finalXP));
+      return (b.check&&b.check(newEntries))||(b.checkXP&&b.checkXP(finalXP))||(b.checkStreak&&b.checkStreak(newStreak));
     }).map(b=>b.id);
     newBadgeIds.forEach((bid,i)=>{
       const b=BADGES.find(x=>x.id===bid);
@@ -381,7 +417,8 @@ export default function BudgetQuest() {
 
     setEntries(newEntries); setXP(finalXP);
     setCompletedQuests(newQuests); setUnlockedBadges(newBadges);
-    saveData(newEntries, finalXP, newQuests, newBadges);
+    setStreak(newStreak); setLastLogDate(newLastLogDate);
+    saveData(newEntries, finalXP, newQuests, newBadges, newStreak, newLastLogDate);
     setForm(f=>({...f,amount:"",note:""}));
   };
 
@@ -426,9 +463,28 @@ export default function BudgetQuest() {
       </div>
 
       {/* XP Bar */}
-      <div style={{marginBottom:18,position:"relative"}}>
+      <div style={{marginBottom:12,position:"relative"}}>
         <XPBar xp={xp} t={t}/>
         {xpAnim&&<div style={{position:"absolute",top:8,right:12,color:t.xpNumColor,fontWeight:900,fontSize:20,fontFamily:"'Fredoka One',cursive",animation:"xpPop 1.5s ease forwards",pointerEvents:"none"}}>{xpAnim}</div>}
+      </div>
+
+      {/* Streak Bar */}
+      <div style={{background:t.cardBg,borderRadius:16,padding:"12px 18px",marginBottom:18,border:`2px solid ${streak>=7?"#f97316":"#f9731630"}`,boxShadow:streak>=1?`0 2px 12px #f9731625`:"none",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+        <div style={{display:"flex",alignItems:"center",gap:10}}>
+          <div style={{fontSize:28,filter:streak>=1?"drop-shadow(0 0 8px #f9731680)":"grayscale(1)"}}>{streak>=14?"🌋":streak>=7?"🔥":streak>=3?"🔥":"🕯️"}</div>
+          <div>
+            <div style={{fontFamily:"'Fredoka One',cursive",fontSize:16,color:streak>=1?"#f97316":t.subColor}}>{streak} Day Streak</div>
+            <div style={{fontSize:11,color:t.subColor,fontWeight:600}}>
+              {streak===0?"Log today to start your streak!":streak>=30?"🏆 Legendary streak!":streak>=14?"⚡ Incredible!":streak>=7?"🔥 On fire!":streak>=3?"💪 Keep it going!":"📅 Log tomorrow to continue!"}
+            </div>
+          </div>
+        </div>
+        <div style={{textAlign:"right"}}>
+          {[3,7,14,30].map(m=>(
+            <div key={m} style={{display:"inline-block",width:8,height:8,borderRadius:"50%",background:streak>=m?"#f97316":"#f9731630",marginLeft:4,boxShadow:streak>=m?"0 0 6px #f97316":"none"}}/>
+          ))}
+          <div style={{fontSize:10,color:t.subColor,marginTop:3,fontWeight:600}}>3·7·14·30</div>
+        </div>
       </div>
 
       {/* Tabs */}
