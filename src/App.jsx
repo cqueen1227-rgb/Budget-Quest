@@ -455,6 +455,10 @@ function SaveIndicator({status,errorMsg,t}) {
 export default function BudgetQuest() {
   const [profile, setProfile]       = useState(null);
   const [profileData, setProfileData] = useState({cameron:{}, hannah:{}});
+  const [deviceProfile, setDeviceProfile] = useState(()=>{
+    try { return localStorage.getItem("bq_device_profile") || null; }
+    catch { return null; }
+  });
   const [entries, setEntries]       = useState([]);
   const [xp, setXP]                 = useState(0);
   const [completedQuests, setCompletedQuests] = useState([]);
@@ -479,11 +483,13 @@ export default function BudgetQuest() {
   const [newPinConfirm, setNewPinConfirm] = useState("");
   const [pinError, setPinError] = useState("");
 
-  // Load both profiles on mount for picker display
+  // Load both profiles on mount for picker display and friends list
   useEffect(()=>{
     Promise.all([sb.load("cameron"),sb.load("hannah")]).then(([cam,han])=>{
       setProfileData({cameron:cam||{},hannah:han||{}});
     }).catch(()=>{});
+    // Auto-select device profile
+    if (deviceProfile) setProfile(deviceProfile);
   },[]);
 
   // Load selected profile data
@@ -557,6 +563,8 @@ export default function BudgetQuest() {
       setProfileData(updated);
       sb.save(p,{...(profileData[p]||{}),pin:newPin});
     }
+    try { localStorage.setItem("bq_device_profile", p); } catch {}
+    setDeviceProfile(p);
     setProfile(p); setTab("log");
   }}/>;
 
@@ -662,7 +670,7 @@ export default function BudgetQuest() {
     return rarityOrder.indexOf(a.rarity)-rarityOrder.indexOf(b.rarity);
   });
 
-  const TABS=[["log",t.logTabIcon,"Log"],["income","💵","Income"],["history","📜","History"],["quests","🏆","Quests"],["badges","🎖️","Badges"],["stats","📊","Stats"],["settings","⚙️","Settings"]];
+  const TABS=[["log",t.logTabIcon,"Log"],["income","💵","Income"],["history","📜","History"],["quests","🏆","Quests"],["badges","🎖️","Badges"],["stats","📊","Stats"],["friends","👥","Friends"],["settings","⚙️","Settings"]];
   const inp={width:"100%",background:t.inputBg,border:`2px solid ${t.inputBorder}`,borderRadius:12,padding:"11px 14px",color:t.bodyText,fontSize:15,boxSizing:"border-box",outline:"none",fontFamily:"inherit"};
   const lbl={fontSize:11,fontWeight:800,color:t.primary,marginBottom:6,display:"block",textTransform:"uppercase",letterSpacing:1};
   const card={background:t.cardBg,borderRadius:22,padding:20,border:`2px solid ${t.cardBorder}`,boxShadow:"0 4px 24px #00000015"};
@@ -988,6 +996,70 @@ export default function BudgetQuest() {
         </div>
       )}
 
+      {/* FRIENDS */}
+      {tab==="friends"&&(
+        <div>
+          <div style={{fontFamily:"'Fredoka One',cursive",fontSize:20,color:t.headingColor,marginBottom:16}}>👥 Rivalry Board</div>
+          {["cameron","hannah"].map(pid=>{
+            const pd = profileData[pid];
+            const th = THEMES[pid];
+            const lvl = pd ? getLvl(pd.xp||0, th.levels) : th.levels[0];
+            const pstreak = pd?.streak||0;
+            const pxp = pd?.xp||0;
+            const pbadges = (pd?.badges||[]).length;
+            const pquests = (pd?.quests||[]).length;
+            const isMe = pid===profile;
+            const next = th.levels.find(l=>l.level===lvl.level+1);
+            const pct = next ? Math.min(100,((pxp-lvl.minXP)/(next.minXP-lvl.minXP))*100) : 100;
+            return (
+              <div key={pid} style={{...card, marginBottom:16, border:`2px solid ${isMe?th.primary+"80":th.cardBorder}`, boxShadow: isMe?`0 4px 20px ${th.primary}30`:"none"}}>
+                {isMe && <div style={{fontSize:10,fontWeight:800,color:th.primary,letterSpacing:1,textTransform:"uppercase",marginBottom:8}}>⭐ YOU</div>}
+                <div style={{display:"flex",alignItems:"center",gap:14,marginBottom:14}}>
+                  <div style={{fontSize:48,filter:`drop-shadow(0 0 8px ${lvl.color}80)`}}>{lvl.char}</div>
+                  <div style={{flex:1}}>
+                    <div style={{fontFamily:"'Fredoka One',cursive",fontSize:20,color:th.primary}}>{th.name}</div>
+                    <div style={{fontFamily:"'Fredoka One',cursive",fontSize:14,color:lvl.color}}>{lvl.title}</div>
+                    <div style={{fontSize:11,color:th.subColor||t.subColor,fontWeight:600}}>Level {lvl.level} · {pxp.toLocaleString()} XP</div>
+                  </div>
+                </div>
+                {/* XP progress bar */}
+                <div style={{height:8,background:th.badgeBarBg||"#0a0608",borderRadius:99,overflow:"hidden",marginBottom:12,border:`1px solid ${lvl.color}30`}}>
+                  <div style={{height:"100%",width:`${pct}%`,background:`linear-gradient(90deg,${lvl.color}cc,${lvl.color})`,borderRadius:99,transition:"width 0.6s ease",boxShadow:`0 0 8px ${lvl.color}80`}}/>
+                </div>
+                {/* Stats row */}
+                <div style={{display:"flex",gap:8}}>
+                  {[
+                    {label:"Streak",value:`🔥 ${pstreak}d`,color:"#f97316"},
+                    {label:"Badges",value:`🎖️ ${pbadges}`,color:th.primary},
+                    {label:"Quests",value:`🏆 ${pquests}`,color:th.primary},
+                  ].map(({label,value,color})=>(
+                    <div key={label} style={{flex:1,background:th.inputBg||t.inputBg,borderRadius:12,padding:"8px 6px",textAlign:"center",border:`1px solid ${color}30`}}>
+                      <div style={{fontFamily:"'Fredoka One',cursive",fontSize:15,color}}>{value}</div>
+                      <div style={{fontSize:10,color:th.subColor||t.subColor,fontWeight:700,marginTop:2}}>{label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+          {/* Who's winning */}
+          {(()=>{
+            const cxp = profileData["cameron"]?.xp||0;
+            const hxp = profileData["hannah"]?.xp||0;
+            const diff = Math.abs(cxp-hxp);
+            const leader = cxp>hxp?"cameron":"hannah";
+            const lth = THEMES[leader];
+            return diff>0?(
+              <div style={{...card,textAlign:"center",padding:"16px",border:`2px solid ${lth.primary}50`}}>
+                <div style={{fontSize:11,fontWeight:800,color:t.subColor,letterSpacing:1,textTransform:"uppercase",marginBottom:6}}>Currently Leading</div>
+                <div style={{fontFamily:"'Fredoka One',cursive",fontSize:22,color:lth.primary}}>{lth.name} {lth.emoji}</div>
+                <div style={{fontSize:13,color:t.subColor,marginTop:4,fontWeight:600}}>by {diff.toLocaleString()} XP</div>
+              </div>
+            ):null;
+          })()}
+        </div>
+      )}
+
       {/* SETTINGS */}
       {tab==="settings"&&(
         <div style={card}>
@@ -1062,7 +1134,10 @@ export default function BudgetQuest() {
             )}
           </div>
           <div style={{borderTop:`1px solid ${t.cardBorder}`,paddingTop:20}}>
-            <button onClick={()=>setProfile(null)} style={{width:"100%",padding:"12px",background:"transparent",border:`2px solid ${t.cardBorder}`,borderRadius:14,color:t.subColor,fontWeight:700,fontSize:14,cursor:"pointer",fontFamily:"inherit"}}>↩ Switch Profile</button>
+            <button onClick={()=>{
+              try { localStorage.removeItem("bq_device_profile"); } catch {}
+              setDeviceProfile(null); setProfile(null);
+            }} style={{width:"100%",padding:"12px",background:"transparent",border:`2px solid ${t.cardBorder}`,borderRadius:14,color:t.subColor,fontWeight:700,fontSize:14,cursor:"pointer",fontFamily:"inherit"}}>↩ Switch Profile</button>
           </div>
         </div>
       )}
