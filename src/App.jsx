@@ -601,6 +601,7 @@ export default function BudgetQuest() {
     try { return localStorage.getItem("bq_device_profile") || null; }
     catch { return null; }
   });
+  const [appReady, setAppReady] = useState(false);
   const [entries, setEntries]       = useState([]);
   const [xp, setXP]                 = useState(0);
   const [completedQuests, setCompletedQuests] = useState([]);
@@ -629,11 +630,11 @@ export default function BudgetQuest() {
   useEffect(()=>{
     Promise.all([sb.load("cameron"),sb.load("hannah"),sb.load("maddi"),sb.load("kyle")]).then(([cam,han,mad,kyl])=>{
       setProfileData({cameron:cam||{},hannah:han||{},maddi:mad||{},kyle:kyl||{}});
-      const saved = deviceProfile;
-      if (saved) setProfile(saved);
+      if (deviceProfile) setProfile(deviceProfile);
+      setAppReady(true);
     }).catch(()=>{
-      const saved = deviceProfile;
-      if (saved) setProfile(saved);
+      if (deviceProfile) setProfile(deviceProfile);
+      setAppReady(true);
     });
   },[]);
 
@@ -702,6 +703,12 @@ export default function BudgetQuest() {
     setIncomeDeleteConfirm(null);
     sb.save(profile,{...(profileData[profile]||{}),entries,xp,quests:completedQuests,badges:unlockedBadges,streak,last_log_date:lastLogDate,pin:profileData[profile]?.pin||null,income:newIncome});
   };
+  if (!appReady) return (
+    <div style={{minHeight:"100vh",background:"#0a0608",display:"flex",alignItems:"center",justifyContent:"center"}}>
+      <div style={{fontSize:48}}>💰</div>
+    </div>
+  );
+
   if (!profile) return <ProfilePicker profileData={profileData} onSelect={(p,newPin)=>{
     if (newPin) {
       const updated={...profileData,[p]:{...(profileData[p]||{}),pin:newPin}};
