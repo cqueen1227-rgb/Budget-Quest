@@ -106,6 +106,144 @@ const THEMES = {
     xpPopSuffix:"🕷️", levelupPrefix:"🕷️ LEVEL UP!", earnedSuffix:"With great spending comes great tracking.",
     statsEmptyText:"Log some purchases to see your web of spending!",
   },
+  maddi: {
+    name:"Maddi", emoji:"🧛",
+    pageBg:"#030d08",
+    pageBgImage:`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M0 40 Q20 20 40 40 Q60 60 80 40' stroke='%2300ff8820' stroke-width='0.8' fill='none'/%3E%3Cpath d='M0 60 Q20 40 40 60 Q60 80 80 60' stroke='%2300b36620' stroke-width='0.5' fill='none'/%3E%3C/svg%3E")`,
+    cardBg:"linear-gradient(145deg,#041a0f,#051520)", cardBorder:"#00b36630",
+    tabBarBg:"#030d08", tabBarBorder:"#00b36625",
+    tabActive:"linear-gradient(135deg,#00b366,#0077aa)", tabActiveColor:"#fff", tabInactiveColor:"#2d6b4a", tabShadow:"0 2px 14px #00b36650",
+    primary:"#00cc77", secondary:"#0099cc", gold:"#00ffaa",
+    headingColor:"#00cc77", subColor:"#2d6b4a", mutedColor:"#1a4a30", bodyText:"#b3ffe0",
+    inputBg:"#030d08", inputBorder:"#00b36640",
+    xpBarGrad:"linear-gradient(90deg,#00b366,#00cc77,#00ffaa)", xpBarGlow:"#00cc7780", xpNumColor:"#00ffaa",
+    btnBg:"linear-gradient(135deg,#00b366,#0077aa)", btnBgActive:"linear-gradient(135deg,#007744,#005577)", btnBorder:"#00ffaa30", btnShadow:"0 4px 20px #00b36660",
+    toastBg:"linear-gradient(135deg,#00b366,#0077aa)", toastShadow:"0 8px 32px #00b36660", toastBorder:"#00ffaa40",
+    questDoneBg:"linear-gradient(135deg,#041a0f,#051520)", questDoneBorder:"#00cc77", questDoneColor:"#00ffaa", questDoneDesc:"#00cc77",
+    statsHeaderBg:"linear-gradient(135deg,#00b366,#0077aa)",
+    statsHeaderBgImg:`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M0 40 Q20 20 40 40 Q60 60 80 40' stroke='%23ffffff15' stroke-width='0.8' fill='none'/%3E%3C/svg%3E")`,
+    statsEmptyColor:"#1a4a30", statsCatText:"#b3ffe0", statsCatMuted:"#1a4a30",
+    badgeCardBg:"linear-gradient(145deg,#041a0f,#051a2e)", badgeCardLocked:"#030d08", badgeCardLockedBorder:"#041a0f",
+    badgeLockedText:"#0a2a1a", badgeLockedDesc:"#041a0f", badgeLockedFlavor:"Keep haunting!",
+    badgeBarBg:"#030d08", badgeBarBorder:"#00b36620", badgeBarGrad:"linear-gradient(90deg,#00b366,#0077aa,#00ffaa)", badgeBarShadow:"0 0 10px #00b36660", badgeCountColor:"#2d6b4a",
+    histDivider:"#041a0f", histCatText:"#2d6b4a", histEmptyColor:"#2d6b4a",
+    catUnselBorder:"#00b36625", catUnselBg:"#030d08", catUnselColor:"#2d6b4a",
+    xpRowBg:"#030d08", xpRowBorder:"#00b36620", xpRowLabelColor:"#1a4a30", xpRowColors:["#00cc77","#0099cc","#00ffaa"],
+    rarity:{
+      common:  {border:"#2d6b4a",glow:"#2d6b4a30",label:"Common",  color:"#4aaa77",shine:"#6bcc99"},
+      uncommon:{border:"#00b366",glow:"#00b36640",label:"Uncommon",color:"#00cc77",shine:"#00ffaa"},
+      rare:    {border:"#0077aa",glow:"#0077aa50",label:"Rare",    color:"#0099cc",shine:"#00bbee"},
+      epic:    {border:"#00ffaa",glow:"#00ffaa60",label:"Epic",    color:"#00ffaa",shine:"#aaffdd"},
+    },
+    catColors:{Food:"#00cc77",Transport:"#0077aa",Entertainment:"#00b366",Shopping:"#00aacc",Bills:"#007755",Health:"#00ffaa",Pets:"#0099bb",Savings:"#00ddaa",Other:"#2d6b4a"},
+    levels:[
+      {level:1, title:"Cave Dweller",       minXP:0,       color:"#4aaa77",bg:"#020a05",char:"🦇"},
+      {level:2, title:"Night Wanderer",     minXP:500,     color:"#00b366",bg:"#030f08",char:"🌙"},
+      {level:3, title:"Axe Slinger",        minXP:1500,    color:"#00cc77",bg:"#041a0f",char:"🎸"},
+      {level:4, title:"Vampire Queen",      minXP:3500,    color:"#00ffaa",bg:"#051a0f",char:"🧛"},
+      {level:5, title:"Marceline",          minXP:7000,    color:"#00cc77",bg:"#030d08",char:"🎵"},
+      {level:6, title:"Demon Heir",         minXP:12000,   color:"#0077aa",bg:"#020d14",char:"👑"},
+      {level:7, title:"Soul Sucker",        minXP:20000,   color:"#0099cc",bg:"#030f1a",char:"💫"},
+      {level:8, title:"Ancient Horror",     minXP:35000,   color:"#00ffaa",bg:"#041a0f",char:"🌊"},
+      {level:9, title:"Abadeer Blood",      minXP:55000,   color:"#00bbee",bg:"#020d14",char:"⚡"},
+      {level:10,title:"Nightosphere Queen", minXP:80000,   color:"#00ffaa",bg:"#030d08",char:"🔮"},
+      {level:11,title:"Undead Legend",      minXP:115000,  color:"#00cc77",bg:"#041a0f",char:"🧛"},
+      {level:12,title:"Eternal Drifter",    minXP:160000,  color:"#0077aa",bg:"#020d14",char:"🌌"},
+      {level:13,title:"Dark Sovereign",     minXP:220000,  color:"#00aacc",bg:"#030f1a",char:"💎"},
+      {level:14,title:"Chaos Master",       minXP:295000,  color:"#00ffaa",bg:"#041a0f",char:"🌀"},
+      {level:15,title:"The Vampire Queen",  minXP:390000,  color:"#00ffcc",bg:"#030d08",char:"👸"},
+      {level:16,title:"Blood Moon Ruler",   minXP:510000,  color:"#00ddaa",bg:"#020a05",char:"🌕"},
+      {level:17,title:"Demon Overlord",     minXP:660000,  color:"#0099cc",bg:"#020d14",char:"👿"},
+      {level:18,title:"Immortal Slayer",    minXP:845000,  color:"#00ffaa",bg:"#041a0f",char:"⚔️"},
+      {level:19,title:"Cosmic Haunter",     minXP:1075000, color:"#00bbee",bg:"#030f1a",char:"🌠"},
+      {level:20,title:"Eternal Night",      minXP:1365000, color:"#00ffaa",bg:"#030d08",char:"🌑"},
+      {level:21,title:"Abyss Walker",       minXP:1730000, color:"#00cc77",bg:"#020a05",char:"🕳️"},
+      {level:22,title:"Shadow Empress",     minXP:2190000, color:"#0077aa",bg:"#020d14",char:"👁️"},
+      {level:23,title:"Void Haunter",       minXP:2770000, color:"#00aacc",bg:"#030f1a",char:"🌊"},
+      {level:24,title:"Legendary Vampire",  minXP:3500000, color:"#00ffaa",bg:"#041a0f",char:"🧛"},
+      {level:25,title:"Chaos Sovereign",    minXP:4420000, color:"#00ddcc",bg:"#030d08",char:"♾️"},
+      {level:26,title:"Galactic Haunter",   minXP:5590000, color:"#0099cc",bg:"#020d14",char:"🌌"},
+      {level:27,title:"Supreme Vampire",    minXP:7070000, color:"#00ffaa",bg:"#041a0f",char:"💫"},
+      {level:28,title:"Eternal Sovereign",  minXP:8940000, color:"#00ccaa",bg:"#030d08",char:"⚜️"},
+      {level:29,title:"Godlike Haunter",    minXP:11300000,color:"#00ffaa",bg:"#020a05",char:"⚡"},
+      {level:30,title:"The True Vampire",   minXP:14300000,color:"#00ffdd",bg:"#030d08",char:"🎸"},
+    ],
+    titleGrad:"linear-gradient(135deg,#00cc77,#00ffaa,#0099cc)", titleShadow:"drop-shadow(0 2px 8px #00b36660)",
+    tagline:"🦇 Suck the budget dry 🦇", taglineColor:"#2d6b4a",
+    logTabIcon:"🧛", logBtnText:"🎸 LOG IT & EARN XP",
+    emptyIcon:"🦇", emptyText:"Nothing here yet!", emptySub:"Head to 🧛 Log and start earning XP.",
+    xpPopSuffix:"🦇", levelupPrefix:"🧛 LEVEL UP!", earnedSuffix:"Marceline approves! 🎸",
+    statsEmptyText:"No spending logged yet. Time to haunt! 🦇",
+  },
+  kyle: {
+    name:"Kyle", emoji:"👨‍🍳",
+    pageBg:"#0a0a0a",
+    pageBgImage:`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='20' cy='20' r='2' fill='%23cc000020'/%3E%3Ccircle cx='60' cy='20' r='1.5' fill='%2322c55e20'/%3E%3Ccircle cx='40' cy='50' r='2' fill='%23cc000015'/%3E%3Ccircle cx='15' cy='65' r='1.5' fill='%2322c55e15'/%3E%3Ccircle cx='65' cy='65' r='2' fill='%23cc000020'/%3E%3Cline x1='0' y1='40' x2='80' y2='40' stroke='%23cc000010' stroke-width='0.5'/%3E%3Cline x1='40' y1='0' x2='40' y2='80' stroke='%2322c55e10' stroke-width='0.5'/%3E%3C/svg%3E")`,
+    cardBg:"linear-gradient(145deg,#1a0505,#0a1a0a)", cardBorder:"#cc000030",
+    tabBarBg:"#0a0a0a", tabBarBorder:"#cc000025",
+    tabActive:"linear-gradient(135deg,#cc0000,#16a34a)", tabActiveColor:"#fff", tabInactiveColor:"#5a2020", tabShadow:"0 2px 14px #cc000050",
+    primary:"#cc0000", secondary:"#16a34a", gold:"#fbbf24",
+    headingColor:"#cc0000", subColor:"#5a2020", mutedColor:"#3a1010", bodyText:"#f0e8e8",
+    inputBg:"#0a0a0a", inputBorder:"#cc000040",
+    xpBarGrad:"linear-gradient(90deg,#cc0000,#ff2222,#16a34a)", xpBarGlow:"#cc000080", xpNumColor:"#fbbf24",
+    btnBg:"linear-gradient(135deg,#cc0000,#16a34a)", btnBgActive:"linear-gradient(135deg,#8b0000,#0d5c1a)", btnBorder:"#fbbf2430", btnShadow:"0 4px 20px #cc000060",
+    toastBg:"linear-gradient(135deg,#cc0000,#16a34a)", toastShadow:"0 8px 32px #cc000060", toastBorder:"#fbbf2440",
+    questDoneBg:"linear-gradient(135deg,#0a1a0a,#0d2a0d)", questDoneBorder:"#16a34a", questDoneColor:"#4ade80", questDoneDesc:"#16a34a",
+    statsHeaderBg:"linear-gradient(135deg,#8b0000,#16a34a)",
+    statsHeaderBgImg:`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='20' cy='20' r='2' fill='%23ffffff15'/%3E%3Ccircle cx='60' cy='60' r='1.5' fill='%23ffffff10'/%3E%3C/svg%3E")`,
+    statsEmptyColor:"#3a1010", statsCatText:"#f0e8e8", statsCatMuted:"#3a1010",
+    badgeCardBg:"linear-gradient(145deg,#1a0505,#0a1a0a)", badgeCardLocked:"#0a0a0a", badgeCardLockedBorder:"#1a0505",
+    badgeLockedText:"#2a0808", badgeLockedDesc:"#1a0505", badgeLockedFlavor:"Keep cooking!",
+    badgeBarBg:"#0a0a0a", badgeBarBorder:"#cc000020", badgeBarGrad:"linear-gradient(90deg,#cc0000,#16a34a,#fbbf24)", badgeBarShadow:"0 0 10px #cc000060", badgeCountColor:"#5a2020",
+    histDivider:"#1a0505", histCatText:"#5a2020", histEmptyColor:"#5a2020",
+    catUnselBorder:"#cc000025", catUnselBg:"#0a0a0a", catUnselColor:"#5a2020",
+    xpRowBg:"#0a0a0a", xpRowBorder:"#cc000020", xpRowLabelColor:"#3a1010", xpRowColors:["#cc0000","#16a34a","#fbbf24"],
+    rarity:{
+      common:  {border:"#5a2020",glow:"#5a202030",label:"Common",  color:"#9a6060",shine:"#bb8080"},
+      uncommon:{border:"#16a34a",glow:"#16a34a40",label:"Uncommon",color:"#4ade80",shine:"#86efac"},
+      rare:    {border:"#cc0000",glow:"#cc000050",label:"Rare",    color:"#f87171",shine:"#fca5a5"},
+      epic:    {border:"#fbbf24",glow:"#fbbf2460",label:"Epic",    color:"#fbbf24",shine:"#fde68a"},
+    },
+    catColors:{Food:"#cc0000",Transport:"#16a34a",Entertainment:"#dc2626",Shopping:"#15803d",Bills:"#991b1b",Health:"#4ade80",Pets:"#16a34a",Savings:"#22c55e",Other:"#5a2020"},
+    levels:[
+      {level:1, title:"Kitchen Rookie",    minXP:0,       color:"#9a6060",bg:"#0a0505",char:"🍳"},
+      {level:2, title:"Prep Cook",         minXP:500,     color:"#cc0000",bg:"#150505",char:"🔪"},
+      {level:3, title:"Line Cook",         minXP:1500,    color:"#16a34a",bg:"#051505",char:"🥘"},
+      {level:4, title:"Sous Chef",         minXP:3500,    color:"#cc0000",bg:"#1a0505",char:"👨‍🍳"},
+      {level:5, title:"Head Chef",         minXP:7000,    color:"#fbbf24",bg:"#0a0a05",char:"⭐"},
+      {level:6, title:"Executive Chef",    minXP:12000,   color:"#cc0000",bg:"#150505",char:"🍽️"},
+      {level:7, title:"Pastry Master",     minXP:20000,   color:"#16a34a",bg:"#051505",char:"🧁"},
+      {level:8, title:"Grill Master",      minXP:35000,   color:"#cc0000",bg:"#1a0505",char:"🔥"},
+      {level:9, title:"Saucier",           minXP:55000,   color:"#fbbf24",bg:"#0a0a05",char:"🫕"},
+      {level:10,title:"Iron Chef",         minXP:80000,   color:"#cc0000",bg:"#150505",char:"🏆"},
+      {level:11,title:"Michelin Star",     minXP:115000,  color:"#fbbf24",bg:"#1a1005",char:"⭐"},
+      {level:12,title:"Celebrity Chef",    minXP:160000,  color:"#cc0000",bg:"#1a0505",char:"📺"},
+      {level:13,title:"Food Scientist",    minXP:220000,  color:"#16a34a",bg:"#051505",char:"🧪"},
+      {level:14,title:"Culinary Artist",   minXP:295000,  color:"#cc0000",bg:"#150505",char:"🎨"},
+      {level:15,title:"Master of Flavors", minXP:390000,  color:"#fbbf24",bg:"#0a0a05",char:"✨"},
+      {level:16,title:"Kitchen Legend",    minXP:510000,  color:"#cc0000",bg:"#1a0505",char:"👑"},
+      {level:17,title:"Culinary God",      minXP:660000,  color:"#16a34a",bg:"#051505",char:"🌿"},
+      {level:18,title:"Grand Chef",        minXP:845000,  color:"#fbbf24",bg:"#0a0a05",char:"🎖️"},
+      {level:19,title:"Chef Sovereign",    minXP:1075000, color:"#cc0000",bg:"#150505",char:"⚜️"},
+      {level:20,title:"Eternal Chef",      minXP:1365000, color:"#fbbf24",bg:"#1a1005",char:"♾️"},
+      {level:21,title:"Legendary Cook",    minXP:1730000, color:"#cc0000",bg:"#1a0505",char:"🏅"},
+      {level:22,title:"Flavor Wizard",     minXP:2190000, color:"#16a34a",bg:"#051505",char:"🔮"},
+      {level:23,title:"Culinary Champion", minXP:2770000, color:"#fbbf24",bg:"#0a0a05",char:"🥇"},
+      {level:24,title:"Supreme Chef",      minXP:3500000, color:"#cc0000",bg:"#150505",char:"👨‍🍳"},
+      {level:25,title:"Galactic Gourmet",  minXP:4420000, color:"#fbbf24",bg:"#1a1005",char:"🌌"},
+      {level:26,title:"Infinite Kitchen",  minXP:5590000, color:"#16a34a",bg:"#051505",char:"∞"},
+      {level:27,title:"Mythic Chef",       minXP:7070000, color:"#cc0000",bg:"#1a0505",char:"💫"},
+      {level:28,title:"Divine Cook",       minXP:8940000, color:"#fbbf24",bg:"#0a0a05",char:"✨"},
+      {level:29,title:"Godlike Gourmet",   minXP:11300000,color:"#cc0000",bg:"#150505",char:"⚡"},
+      {level:30,title:"The One True Chef", minXP:14300000,color:"#fbbf24",bg:"#0a0505",char:"👨‍🍳"},
+    ],
+    titleGrad:"linear-gradient(135deg,#cc0000,#fbbf24,#16a34a)", titleShadow:"drop-shadow(0 2px 8px #cc000060)",
+    tagline:"🔪 Budget like a Michelin star chef 🍽️", taglineColor:"#5a2020",
+    logTabIcon:"👨‍🍳", logBtnText:"🔪 LOG IT & EARN XP",
+    emptyIcon:"🍳", emptyText:"The kitchen is empty!", emptySub:"Head to 👨‍🍳 Log and start cooking.",
+    xpPopSuffix:"🍳", levelupPrefix:"👨‍🍳 LEVEL UP!", earnedSuffix:"Yes chef! 🔪",
+    statsEmptyText:"No spending logged yet. Fire up the stove! 🔥",
+  },
   hannah: {
     name:"Hannah", emoji:"🎀",
     pageBg:"#fff0f5",
@@ -337,7 +475,9 @@ function PinScreen({ meta, onSuccess, onBack, isSettingPin, savedPin }) {
 // ─── PROFILE PICKER ────────────────────────────────────────────────────────────
 const PROFILE_META = {
   cameron:{id:"cameron",emoji:"🕷️",name:"Cameron",sub:"Spider-Man",bg:"linear-gradient(145deg,#1a0d0d,#0d1525)",border:"#cc000060",nameColor:"#e63030",subColor:"#6b4040",btnBg:"linear-gradient(135deg,#cc0000,#1a3a8f)",shadow:"0 8px 32px #cc000030",pinBg:"#1a0d0d",pinBorder:"#cc000060",pinActive:"#e63030"},
-  hannah: {id:"hannah", emoji:"🎀",name:"Hannah", sub:"Hello Kitty",bg:"linear-gradient(145deg,#fff5f9,#ffeef5)",border:"#ff69b470",nameColor:"#e91e8c",subColor:"#d4829a",btnBg:"linear-gradient(135deg,#ff69b4,#ff1493)",shadow:"0 8px 32px #ff69b430",pinBg:"#fff5f9",pinBorder:"#ff69b470",pinActive:"#e91e8c"},
+  maddi:   {id:"maddi",  emoji:"🧛",name:"Maddi",  sub:"Marceline",   bg:"linear-gradient(145deg,#041a0f,#051520)",border:"#00b36660",nameColor:"#00cc77",subColor:"#2d6b4a",btnBg:"linear-gradient(135deg,#00b366,#0077aa)",shadow:"0 8px 32px #00b36630",pinBg:"#030d08",pinBorder:"#00b36660",pinActive:"#00cc77"},
+  hannah:  {id:"hannah", emoji:"🎀",name:"Hannah", sub:"Hello Kitty",   bg:"linear-gradient(145deg,#fff5f9,#ffeef5)",border:"#ff69b470",nameColor:"#e91e8c",subColor:"#d4829a",btnBg:"linear-gradient(135deg,#ff69b4,#ff1493)",shadow:"0 8px 32px #ff69b430",pinBg:"#fff5f9",pinBorder:"#ff69b470",pinActive:"#e91e8c"},
+  kyle:    {id:"kyle",   emoji:"👨‍🍳",name:"Kyle",   sub:"Head Chef",      bg:"linear-gradient(145deg,#1a0505,#0a1a0a)",border:"#cc000060",nameColor:"#cc0000",subColor:"#5a2020",btnBg:"linear-gradient(135deg,#cc0000,#16a34a)",shadow:"0 8px 32px #cc000030",pinBg:"#0a0a0a",pinBorder:"#cc000060",pinActive:"#cc0000"},
 };
 
 function ProfilePicker({ onSelect, profileData }) {
@@ -359,27 +499,29 @@ function ProfilePicker({ onSelect, profileData }) {
       <div style={{fontSize:52,marginBottom:8}}>💰</div>
       <h1 style={{fontFamily:"'Fredoka One',cursive",fontSize:36,margin:"0 0 6px",background:"linear-gradient(135deg,#e63030,#ff69b4)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"}}>Budget Quest</h1>
       <div style={{color:"#9ca3af",fontSize:14,marginBottom:28,fontWeight:600}}>Who's playing?</div>
-      <div style={{display:"flex",gap:16,width:"100%",maxWidth:400}}>
-        {[PROFILE_META.cameron, PROFILE_META.hannah].map(p=>{
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14,width:"100%",maxWidth:420}}>
+        {[PROFILE_META.cameron, PROFILE_META.hannah, PROFILE_META.maddi, PROFILE_META.kyle].map((p,idx)=>{
           const data = profileData[p.id];
           const lvl = data ? getLvl(data.xp||0, THEMES[p.id].levels) : null;
           const streak = data?.streak || 0;
+          const isLast = idx===2;
           return (
-            <button key={p.id} onClick={()=>handleCardTap(p.id)} style={{flex:1,background:p.bg,border:`2px solid ${p.border}`,borderRadius:24,padding:"24px 14px",cursor:"pointer",textAlign:"center",boxShadow:p.shadow,transition:"transform 0.15s",fontFamily:"inherit"}}
-              onMouseEnter={e=>e.currentTarget.style.transform="scale(1.03)"}
+            <button key={p.id} onClick={()=>handleCardTap(p.id)}
+              style={{background:p.bg,border:`2px solid ${p.border}`,borderRadius:22,padding:"20px 12px",cursor:"pointer",textAlign:"center",boxShadow:p.shadow,transition:"transform 0.15s",fontFamily:"inherit"}}
+              onMouseEnter={e=>e.currentTarget.style.transform="scale(1.02)"}
               onMouseLeave={e=>e.currentTarget.style.transform="scale(1)"}>
-              <div style={{fontSize:48,marginBottom:8}}>{p.emoji}</div>
-              <div style={{fontFamily:"'Fredoka One',cursive",fontSize:20,color:p.nameColor,marginBottom:2}}>{p.name}</div>
-              <div style={{fontSize:11,color:p.subColor,fontWeight:600,marginBottom:10}}>{p.sub}</div>
+              <div style={{fontSize:42,marginBottom:6}}>{p.emoji}</div>
+              <div style={{fontFamily:"'Fredoka One',cursive",fontSize:18,color:p.nameColor,marginBottom:2}}>{p.name}</div>
+              <div style={{fontSize:11,color:p.subColor,fontWeight:600,marginBottom:8}}>{p.sub}</div>
               {lvl && (
-                <div style={{background:`${p.border}`,borderRadius:10,padding:"8px 10px",marginBottom:10}}>
-                  <div style={{fontSize:18,marginBottom:2}}>{lvl.char}</div>
-                  <div style={{fontFamily:"'Fredoka One',cursive",fontSize:13,color:lvl.color}}>{lvl.title}</div>
-                  <div style={{fontSize:10,color:p.subColor,marginTop:2,fontWeight:600}}>Level {lvl.level}</div>
+                <div style={{background:`${p.border}`,borderRadius:10,padding:"6px 8px",marginBottom:8}}>
+                  <div style={{fontSize:16,marginBottom:2}}>{lvl.char}</div>
+                  <div style={{fontFamily:"'Fredoka One',cursive",fontSize:12,color:lvl.color}}>{lvl.title}</div>
+                  <div style={{fontSize:10,color:p.subColor,marginTop:1,fontWeight:600}}>Level {lvl.level}</div>
                 </div>
               )}
-              {streak>0 && <div style={{fontSize:12,color:"#f97316",fontWeight:800,marginBottom:8}}>🔥 {streak} day streak</div>}
-              <div style={{background:p.btnBg,borderRadius:12,padding:"9px",color:"#fff",fontWeight:800,fontSize:13,fontFamily:"'Fredoka One',cursive"}}>
+              {streak>0 && <div style={{fontSize:11,color:"#f97316",fontWeight:800,marginBottom:6}}>🔥 {streak}d streak</div>}
+              <div style={{background:p.btnBg,borderRadius:10,padding:"8px",color:"#fff",fontWeight:800,fontSize:12,fontFamily:"'Fredoka One',cursive"}}>
                 {data?.pin ? "🔒 Locked" : "▶ Play"}
               </div>
             </button>
@@ -454,7 +596,7 @@ function SaveIndicator({status,errorMsg,t}) {
 // ─── MAIN APP ──────────────────────────────────────────────────────────────────
 export default function BudgetQuest() {
   const [profile, setProfile]       = useState(null);
-  const [profileData, setProfileData] = useState({cameron:{}, hannah:{}});
+  const [profileData, setProfileData] = useState({cameron:{}, hannah:{}, maddi:{}, kyle:{}});
   const [deviceProfile, setDeviceProfile] = useState(()=>{
     try { return localStorage.getItem("bq_device_profile") || null; }
     catch { return null; }
@@ -483,13 +625,11 @@ export default function BudgetQuest() {
   const [newPinConfirm, setNewPinConfirm] = useState("");
   const [pinError, setPinError] = useState("");
 
-  // Load both profiles on mount for picker display and friends list
+  // Load all profiles on mount for picker display and friends list
   useEffect(()=>{
-    Promise.all([sb.load("cameron"),sb.load("hannah")]).then(([cam,han])=>{
-      setProfileData({cameron:cam||{},hannah:han||{}});
+    Promise.all([sb.load("cameron"),sb.load("hannah"),sb.load("maddi"),sb.load("kyle")]).then(([cam,han,mad,kyl])=>{
+      setProfileData({cameron:cam||{},hannah:han||{},maddi:mad||{},kyle:kyl||{}});
     }).catch(()=>{});
-    // Auto-select device profile
-    if (deviceProfile) setProfile(deviceProfile);
   },[]);
 
   // Load selected profile data
@@ -1000,7 +1140,7 @@ export default function BudgetQuest() {
       {tab==="friends"&&(
         <div>
           <div style={{fontFamily:"'Fredoka One',cursive",fontSize:20,color:t.headingColor,marginBottom:16}}>👥 Rivalry Board</div>
-          {["cameron","hannah"].map(pid=>{
+          {["cameron","hannah","maddi","kyle"].map(pid=>{
             const pd = profileData[pid];
             const th = THEMES[pid];
             const lvl = pd ? getLvl(pd.xp||0, th.levels) : th.levels[0];
@@ -1044,11 +1184,11 @@ export default function BudgetQuest() {
           })}
           {/* Who's winning */}
           {(()=>{
-            const cxp = profileData["cameron"]?.xp||0;
-            const hxp = profileData["hannah"]?.xp||0;
-            const diff = Math.abs(cxp-hxp);
-            const leader = cxp>hxp?"cameron":"hannah";
-            const lth = THEMES[leader];
+            const scores = ["cameron","hannah","maddi","kyle"].map(pid=>({pid, xp:profileData[pid]?.xp||0})).sort((a,b)=>b.xp-a.xp);
+            const leader = scores[0];
+            const second = scores[1];
+            const diff = leader.xp - second.xp;
+            const lth = THEMES[leader.pid];
             return diff>0?(
               <div style={{...card,textAlign:"center",padding:"16px",border:`2px solid ${lth.primary}50`}}>
                 <div style={{fontSize:11,fontWeight:800,color:t.subColor,letterSpacing:1,textTransform:"uppercase",marginBottom:6}}>Currently Leading</div>
