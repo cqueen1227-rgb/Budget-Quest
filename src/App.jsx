@@ -657,11 +657,12 @@ export default function BudgetQuest() {
     }).catch(()=>setLoading(false));
   },[profile]);
 
-  const saveData = useCallback(async (newEntries,newXP,newQuests,newBadges,newStreakVal=streak,newLastLogDate=lastLogDate)=>{
+  const saveData = async (newEntries,newXP,newQuests,newBadges,newStreakVal,newLastLogDate,newIncome)=>{
     setSaveStatus("saving");
     try {
       const pin=profileData[profile]?.pin||null;
-      await sb.save(profile,{entries:newEntries,xp:newXP,quests:newQuests,badges:newBadges,streak:newStreakVal,last_log_date:newLastLogDate,pin,income});
+      const inc = newIncome !== undefined ? newIncome : income;
+      await sb.save(profile,{entries:newEntries,xp:newXP,quests:newQuests,badges:newBadges,streak:newStreakVal,last_log_date:newLastLogDate,pin,income:inc});
       setSaveStatus("saved");
       setTimeout(()=>setSaveStatus("idle"),2000);
     } catch(e) {
@@ -669,7 +670,7 @@ export default function BudgetQuest() {
       setSaveStatus("error");
       setTimeout(()=>{setSaveStatus("idle");setSaveError("");},6000);
     }
-  },[profile,profileData,streak,lastLogDate]);
+  };
 
   const deleteEntry = (id) => {
     const entry=entries.find(e=>e.id===id);
@@ -680,7 +681,7 @@ export default function BudgetQuest() {
     if (entry.date===today) lost+=10;
     const newXP=Math.max(0,xp-lost);
     setEntries(newEntries); setXP(newXP); setDeleteConfirm(null);
-    saveData(newEntries,newXP,completedQuests,unlockedBadges);
+    saveData(newEntries,newXP,completedQuests,unlockedBadges,streak,lastLogDate,income);
   };
 
   const addIncome=()=>{
@@ -804,7 +805,7 @@ export default function BudgetQuest() {
     setCompletedQuests(newQuests); setUnlockedBadges(newBadges);
     setStreak(newStreak); setLastLogDate(newLastLogDate);
     setProfileData(pd=>({...pd,[profile]:{...(pd[profile]||{}),xp:finalXP,streak:newStreak,last_log_date:newLastLogDate}}));
-    saveData(newEntries,finalXP,newQuests,newBadges,newStreak,newLastLogDate);
+    saveData(newEntries,finalXP,newQuests,newBadges,newStreak,newLastLogDate,income);
     setForm(f=>({...f,amount:"",note:""}));
   };
 
