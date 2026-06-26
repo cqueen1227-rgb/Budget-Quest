@@ -625,11 +625,16 @@ export default function BudgetQuest() {
   const [newPinConfirm, setNewPinConfirm] = useState("");
   const [pinError, setPinError] = useState("");
 
-  // Load all profiles on mount for picker display and friends list
+  // Load all profiles on mount, then auto-select device profile
   useEffect(()=>{
     Promise.all([sb.load("cameron"),sb.load("hannah"),sb.load("maddi"),sb.load("kyle")]).then(([cam,han,mad,kyl])=>{
       setProfileData({cameron:cam||{},hannah:han||{},maddi:mad||{},kyle:kyl||{}});
-    }).catch(()=>{});
+      const saved = deviceProfile;
+      if (saved) setProfile(saved);
+    }).catch(()=>{
+      const saved = deviceProfile;
+      if (saved) setProfile(saved);
+    });
   },[]);
 
   // Load selected profile data
